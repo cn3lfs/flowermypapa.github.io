@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta name="keywords" content="hexo, autumn">
+    <title>
+        Hexo
+    </title>
+    <!-- favicon -->
+    
+    <link rel="icon" href="https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/favicon.ico">
+    
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- highlight -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/github-gist.min.css">
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad()
+    </script>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/frontendsophie/hexo-infinite-scroll@1.0.0/dist/hexo-infinite-scroll.min.css">
+    <script src="https://cdn.jsdelivr.net/gh/frontendsophie/hexo-infinite-scroll@1.0.0/dist/hexo-infinite-scroll.min.js"></script>
+    <script>
+        infiniteScroll()
+
+        // for mobile menu
+        $(function () {
+            $('.social-button').click(function () {
+                if ($('.social-links').hasClass('hide-links')) {
+                    $('.social-links').removeClass('hide-links')
+                } else {
+                    $('.social-links').addClass('hide-links')
+                }
+            })
+        })
+    </script>
+</head>
+
+    <body style="background: url(https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/button-bg.png) #f3f3f3">
+        <div class="container">
+            <header class="header">
+    <h1 class="title">
+        <a href="/" class="logo">
+            Hexo
+        </a>
+    </h1>
+    <h2 class="desc">
+        
+    </h2>
+
+    <nav class="links">
+        <button class="social-button">
+            menu
+        </button>
+        <ul class="social-links hide-links">
+            
+                <li>
+                    <a href="https://github.com/flowermypapa/">
+                        Github
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="https://github.com/flowermypapa/">
+                        LinkedIn
+                    </a>
+                </li>
+                
+        </ul>
+    </nav>
+</header>
+                <main class="main">
+                    <article class="post">
+    
+    
+    
+    <h2 class="post-title">
+        vue
+    </h2>
+    <ul class="post-date">
+        <li>
+            2019-02-19
+        </li>
+        <li>
+            flowermypapa
+        </li>
+    </ul>
+    <div class="post-content">
+        <ol>
+<li>vue data update<br>When this data changes, the view will re-render. It should be noted that properties in data are only reactive if they existed when the instance was created. That means if you add a new property, like:</li>
+</ol>
+<p>The only exception to this being the use of Object.freeze(), which prevents existing properties from being changed, which also means the reactivity system can’t track changes.</p>
+<p>In addition to data properties, Vue instances expose a number of useful instance properties and methods. These are prefixed with $ to differentiate them from user-defined properties.</p>
+<ol start="2">
+<li>computed properties vs methods</li>
+</ol>
+<p>instead of a computed property, we can define the same function as a method instead. For the end result, the two approaches are indeed exactly the same. However, the difference is that computed properties are cached based on their dependencies. A computed property will only re-evaluate when some of its dependencies have changed. This means as long as message has not changed, multiple access to the reversedMessage computed property will immediately return the previously computed result without having to run the function again.</p>
+<p>In comparison, a method invocation will always run the function whenever a re-render happens.</p>
+<p>Why do we need caching? Imagine we have an expensive computed property A, which requires looping through a huge Array and doing a lot of computations. Then we may have other computed properties that in turn depend on A. Without caching, we would be executing A’s getter many more times than necessary! In cases where you do not want caching, use a method instead.</p>
+<ol start="3">
+<li>computed property vs watch property<br>However, it is often a better idea to use a computed property rather than an imperative watch callback. </li>
+</ol>
+<ol start="4">
+<li>v-if multiple element</li>
+</ol>
+<p>Because v-if is a directive, it has to be attached to a single element. But what if we want to toggle more than one element? In this case we can use v-if on a <template> element, which serves as an invisible wrapper. The final rendered result will not include the <template> element.<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">v-if</span>=<span class="string">"ok"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Paragraph 1<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Paragraph 2<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure></template></template></p>
+<ol start="5">
+<li>v-if and key<br>Vue tries to render elements as efficiently as possible, often re-using them instead of rendering from scratch. Beyond helping make Vue very fast, this can have some useful advantages.</li>
+</ol>
+<p>This isn’t always desirable though, so Vue offers a way for you to say, “These two elements are completely separate - don’t re-use them.” Add a key attribute with unique values:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">v-if</span>=<span class="string">"loginType === 'username'"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">label</span>&gt;</span>Username<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">placeholder</span>=<span class="string">"Enter your username"</span> <span class="attr">key</span>=<span class="string">"username-input"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">v-else</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">label</span>&gt;</span>Email<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">placeholder</span>=<span class="string">"Enter your email address"</span> <span class="attr">key</span>=<span class="string">"email-input"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>Now those inputs will be rendered from scratch each time you toggle. </p>
+<ol start="6">
+<li>v-if vs v-show</li>
+</ol>
+<p>v-if is “real” conditional rendering because it ensures that event listeners and child components inside the conditional block are properly destroyed and re-created during toggles.</p>
+<p>v-if is also lazy: if the condition is false on initial render, it will not do anything - the conditional block won’t be rendered until the condition becomes true for the first time.</p>
+<p>In comparison, v-show is much simpler - the element is always rendered regardless of initial condition, with CSS-based toggling.</p>
+<p>Generally speaking, v-if has higher toggle costs while v-show has higher initial render costs. So prefer v-show if you need to toggle something very often, and prefer v-if if the condition is unlikely to change at runtime.</p>
+<ol start="7">
+<li>v-for and key</li>
+</ol>
+<p>When Vue is updating a list of elements rendered with v-for, by default it uses an “in-place patch” strategy. If the order of the data items has changed, instead of moving the DOM elements to match the order of the items, Vue will patch each element in-place and make sure it reflects what should be rendered at that particular index. </p>
+<p>This default mode is efficient, but only suitable when your list render output does not rely on child component state or temporary DOM state (e.g. form input values).</p>
+<p>To give Vue a hint so that it can track each node’s identity, and thus reuse and reorder existing elements, you need to provide a unique key attribute for each item.<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">"item in items"</span> <span class="attr">:key</span>=<span class="string">"item.id"</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- content --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>It is recommended to provide a key with v-for whenever possible, unless the iterated DOM content is simple, or you are intentionally relying on the default behavior for performance gains.</p>
+<ol start="7">
+<li>array mutation methods and non-mutating methods<br>Mutation Methods</li>
+</ol>
+<p>Vue wraps an observed array’s mutation methods so they will also trigger view updates. The wrapped methods are:</p>
+<pre><code>push()
+pop()
+shift()
+unshift()
+splice()
+sort()
+reverse()
+</code></pre><p>In comparison, there are also non-mutating methods, e.g. filter(), concat() and slice(), which do not mutate the original array but always return a new array. When working with non-mutating methods, you can replace the old array with the new one:</p>
+<p>example1.items = example1.items.filter(function (item) {<br>  return item.message.match(/Foo/)<br>})</p>
+<ol start="8">
+<li>limit</li>
+</ol>
+<p>8.1<br>Due to limitations in JavaScript, Vue cannot detect the following changes to an array:</p>
+<pre><code>When you directly set an item with the index, e.g. vm.items[indexOfItem] = newValue
+When you modify the length of the array, e.g. vm.items.length = newLength
+</code></pre><p>To overcome caveat 1, both of the following will accomplish the same as vm.items[indexOfItem] = newValue, but will also trigger state updates in the reactivity system:</p>
+<p>// Vue.set<br>Vue.set(vm.items, indexOfItem, newValue)</p>
+<p>// Array.prototype.splice<br>vm.items.splice(indexOfItem, 1, newValue)</p>
+<p>You can also use the vm.$set instance method, which is an alias for the global Vue.set:</p>
+<p>vm.$set(vm.items, indexOfItem, newValue)</p>
+<p>To deal with caveat 2, you can use splice:</p>
+<p>vm.items.splice(newLength)</p>
+<p>8.2<br>Again due to limitations of modern JavaScript, Vue cannot detect property addition or deletion.Vue does not allow dynamically adding new root-level reactive properties to an already created instance. However, it’s possible to add reactive properties to a nested object using the Vue.set(object, key, value) method.You can also use the vm.$set instance method, which is an alias for the global Vue.set</p>
+<p>Sometimes you may want to assign a number of new properties to an existing object, for example using Object.assign() or _.extend(). In such cases, you should create a fresh object with properties from both objects. </p>
+<ol start="9">
+<li>v-for to-do-list</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"todo-list-example"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">form</span> <span class="attr">v-on:submit.prevent</span>=<span class="string">"addNewTodo"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"new-todo"</span>&gt;</span>Add a todo<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span></span></span><br><span class="line"><span class="tag">      <span class="attr">v-model</span>=<span class="string">"newTodoText"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">id</span>=<span class="string">"new-todo"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">placeholder</span>=<span class="string">"E.g. Feed the cat"</span></span></span><br><span class="line"><span class="tag">    &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span>&gt;</span>Add<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span></span></span><br><span class="line"><span class="tag">      <span class="attr">is</span>=<span class="string">"todo-item"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">v-for</span>=<span class="string">"(todo, index) in todos"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">v-bind:key</span>=<span class="string">"todo.id"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">v-bind:title</span>=<span class="string">"todo.title"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">v-on:remove</span>=<span class="string">"todos.splice(index, 1)"</span></span></span><br><span class="line"><span class="tag">    &gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'todo-item'</span>, &#123;</span><br><span class="line">  template: <span class="string">'\</span></span><br><span class="line"><span class="string">    &lt;li&gt;\</span></span><br><span class="line"><span class="string">      &#123;&#123; title &#125;&#125;\</span></span><br><span class="line"><span class="string">      &lt;button v-on:click="$emit(\'remove\')"&gt;Remove&lt;/button&gt;\</span></span><br><span class="line"><span class="string">    &lt;/li&gt;\</span></span><br><span class="line"><span class="string">  '</span>,</span><br><span class="line">  props: [<span class="string">'title'</span>]</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#todo-list-example'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    newTodoText: <span class="string">''</span>,</span><br><span class="line">    todos: [</span><br><span class="line">      &#123;</span><br><span class="line">        id: <span class="number">1</span>,</span><br><span class="line">        title: <span class="string">'Do the dishes'</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        id: <span class="number">2</span>,</span><br><span class="line">        title: <span class="string">'Take out the trash'</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        id: <span class="number">3</span>,</span><br><span class="line">        title: <span class="string">'Mow the lawn'</span></span><br><span class="line">      &#125;</span><br><span class="line">    ],</span><br><span class="line">    nextTodoId: <span class="number">4</span></span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    addNewTodo: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.todos.push(&#123;</span><br><span class="line">        id: <span class="keyword">this</span>.nextTodoId++,</span><br><span class="line">        title: <span class="keyword">this</span>.newTodoText</span><br><span class="line">      &#125;)</span><br><span class="line">      <span class="keyword">this</span>.newTodoText = <span class="string">''</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ol start="10">
+<li>event handler v-on</li>
+</ol>
+<p>Sometimes we also need to access the original DOM event in an inline statement handler. You can pass it into a method using the special $event variable:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click</span>=<span class="string">"warn('Form cannot be submitted yet.', $event)"</span>&gt;</span></span><br><span class="line">  Submit</span><br><span class="line"><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...</span></span><br><span class="line">methods: &#123;</span><br><span class="line">  warn: <span class="function"><span class="keyword">function</span> (<span class="params">message, event</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// now we have access to the native event</span></span><br><span class="line">    <span class="keyword">if</span> (event) event.preventDefault()</span><br><span class="line">    alert(message)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="11">
+<li>Event Modifiers<br>.stop<br>.prevent<br>.capture<br>.self<br>.once<br>.passive</li>
+</ol>
+<p>The .passive modifier is especially useful for improving performance on mobile devices.</p>
+<ol start="12">
+<li>Key Modifiers</li>
+</ol>
+<p>When listening for keyboard events, we often need to check for specific keys. Vue allows adding key modifiers for v-on when listening for key events:</p>
+<!-- only call `vm.submit()` when the `key` is `Enter` -->
+<input v-on:keyup.enter="submit">
+
+<p>You can directly use any valid key names exposed via KeyboardEvent.key as modifiers by converting them to kebab-case.</p>
+<input v-on:keyup.page-down="onPageDown">
+
+<p>In the above example, the handler will only be called if $event.key is equal to ‘PageDown’.</p>
+<p>System Modifier Keys</p>
+<p>You can use the following modifiers to trigger mouse or keyboard event listeners only when the corresponding modifier key is pressed:</p>
+<pre><code>.ctrl
+.alt
+.shift
+.meta
+</code></pre><!-- Ctrl + Click -->
+<div @click.ctrl="doSomething">Do something</div>
+
+
+<p>.exact Modifier</p>
+<p>The .exact modifier allows control of the exact combination of system modifiers needed to trigger an event.</p>
+<!-- this will fire even if Alt or Shift is also pressed -->
+<button @click.ctrl="onClick">A</button>
+
+<!-- this will only fire when Ctrl and no other keys are pressed -->
+<button @click.ctrl.exact="onCtrlClick">A</button>
+
+<!-- this will only fire when no system modifiers are pressed -->
+<button @click.exact="onClick">A</button>
+
+
+<p>Mouse Button Modifiers</p>
+<pre><code>.left
+.right
+.middle
+</code></pre><ol start="13">
+<li>v-model</li>
+</ol>
+<p>Modifiers<br>.lazy</p>
+<p>By default, v-model syncs the input with the data after each input event (with the exception of IME composition as stated above). You can add the lazy modifier to instead sync after change events:</p>
+<!-- synced after "change" instead of "input" -->
+<input v-model.lazy="msg">
+
+<p>.number</p>
+<p>If you want user input to be automatically typecast as a number, you can add the number modifier to your v-model managed inputs:</p>
+<input v-model.number="age" type="number">
+
+<p>This is often useful, because even with type=”number”, the value of HTML input elements always returns a string. If the value cannot be parsed with parseFloat(), then the original value is returned.<br>.trim</p>
+<p>If you want whitespace from user input to be trimmed automatically, you can add the trim modifier to your v-model-managed inputs:</p>
+<input v-model.trim="msg">
+
+<ol start="14">
+<li>component</li>
+</ol>
+<p>data Must Be a Function</p>
+<p>When we defined the <button-counter> component, you may have noticed that data wasn’t directly provided an object, like this:</button-counter></p>
+<p>data: {<br>  count: 0<br>}</p>
+<p>Instead, a component’s data option must be a function, so that each instance can maintain an independent copy of the returned data object:</p>
+<p>data: function () {<br>  return {<br>    count: 0<br>  }<br>}</p>
+<p>If Vue didn’t have this rule, clicking on one button would affect the data of all other instances, like below:</p>
+<p>Props</p>
+<p>Props are custom attributes you can register on a component. When a value is passed to a prop attribute, it becomes a property on that component instance. To pass a title to our blog post component, we can include it in the list of props this component accepts, using a props option:</p>
+<p>Vue.component(‘blog-post’, {<br>  props: [‘title’],<br>  template: ‘</p><h3>vue</h3>‘<br>})<p></p>
+<p>A component can have as many props as you’d like and by default, any value can be passed to any prop. In the template above, you’ll see that we can access this value on the component instance, just like with data.</p>
+<p>every component must have a single root element. </p>
+<p>&lt;blog-post<br>  v-for=”post in posts”<br>  v-bind:key=”post.id”<br>  v-bind:post=”post”</p>
+<blockquote>
+<p></p>
+</blockquote>
+<p>Vue.component(‘blog-post’, {<br>  props: [‘post’],<br>  template: <code>&lt;div class=&quot;blog-post&quot;&gt;
+      &lt;h3&gt;&lt;/h3&gt;
+      &lt;div v-html=&quot;post.content&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;</code><br>})</p>
+<p>Dynamic Components</p>
+<!-- Component changes when currentTabComponent changes -->
+<component v-bind:is="currentTabComponent"></component>
+
+<p>In the example above, currentTabComponent can contain either:</p>
+<pre><code>the name of a registered component, or
+a component’s options object
+</code></pre><p>DOM Template Parsing Caveats</p>
+<p>Some HTML elements, such as <ul>, <ol>, <table> and <select> have restrictions on what elements can appear inside them, and some elements such as <li>, <tr>, and <option> can only appear inside certain other elements.</option></tr></li></select></table></ol></ul></p>
+<p>This will lead to issues when using components with elements that have such restrictions. For example:</p>
+<table><br>  <blog-post-row></blog-post-row><br></table>
+
+<p>The custom component <blog-post-row> will be hoisted out as invalid content, causing errors in the eventual rendered output. Fortunately, the is special attribute offers a workaround:</blog-post-row></p>
+<p><table><br>  <tr is="blog-post-row"></tr><br></table><br>It should be noted that this limitation does not apply if you are using string templates from one of the following sources:</p>
+<pre><code>String templates (e.g. template: &apos;...&apos;)
+Single-file (.vue) components
+&lt;script type=&quot;text/x-template&quot;&gt;
+</code></pre>
+    </div>
+</article>
+                </main>
+                <aside class="aside">
+                    <section class="aside-section">
+                        
+    <h1>Categories</h1>
+
+    
+
+                    </section>
+                    <section class="aside-section">
+                        
+    <h1>Archives</h1>
+
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a></li></ul>
+
+
+                    </section>
+                    <section class="aside-section tag">
+                        
+    <h1>Tags</h1>
+
+    <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
+
+                    </section>
+                </aside>
+        </div>
+    </body>
+
+</html>

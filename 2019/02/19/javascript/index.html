@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta name="keywords" content="hexo, autumn">
+    <title>
+        Hexo
+    </title>
+    <!-- favicon -->
+    
+    <link rel="icon" href="https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/favicon.ico">
+    
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- highlight -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/github-gist.min.css">
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad()
+    </script>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/frontendsophie/hexo-infinite-scroll@1.0.0/dist/hexo-infinite-scroll.min.css">
+    <script src="https://cdn.jsdelivr.net/gh/frontendsophie/hexo-infinite-scroll@1.0.0/dist/hexo-infinite-scroll.min.js"></script>
+    <script>
+        infiniteScroll()
+
+        // for mobile menu
+        $(function () {
+            $('.social-button').click(function () {
+                if ($('.social-links').hasClass('hide-links')) {
+                    $('.social-links').removeClass('hide-links')
+                } else {
+                    $('.social-links').addClass('hide-links')
+                }
+            })
+        })
+    </script>
+</head>
+
+    <body style="background: url(https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/button-bg.png) #f3f3f3">
+        <div class="container">
+            <header class="header">
+    <h1 class="title">
+        <a href="/" class="logo">
+            Hexo
+        </a>
+    </h1>
+    <h2 class="desc">
+        
+    </h2>
+
+    <nav class="links">
+        <button class="social-button">
+            menu
+        </button>
+        <ul class="social-links hide-links">
+            
+                <li>
+                    <a href="https://github.com/flowermypapa/">
+                        Github
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="https://github.com/flowermypapa/">
+                        LinkedIn
+                    </a>
+                </li>
+                
+        </ul>
+    </nav>
+</header>
+                <main class="main">
+                    <article class="post">
+    
+    
+    
+    <h2 class="post-title">
+        javascript
+    </h2>
+    <ul class="post-date">
+        <li>
+            2019-02-19
+        </li>
+        <li>
+            flowermypapa
+        </li>
+    </ul>
+    <div class="post-content">
+        <p>1.javascript 1995 appeared, many browser use it. first it was used by form validation.<br>2.<br>Module import export<br>es5:<br>export:<br>var Modul_var = {};modul.exports = Modul_var;<br>import:<br>var Modul_var = require(“./XX.js”);<br>function doSomething() {<br>    …<br>    use Modul_var here<br>}</p>
+<p>es6:<br>export:<br>let Modul_var ={}; export default Modul_var;<br>Or let Modul_var1 ={};let Modul_var2 ={}; export {Modul_var1 as [alias1], Modul_var2 as [alias2]};<br>import:<br>import {Modul_var as [alias]} from “./XX.js”;<br>Or import {[alias1], [alias2]} from “./XX.js”; (the”.js”extention can be ignored, just the name)<br>function doSomething() {<br>    …<br>    use Modul_var here<br>}</p>
+<h2 id="Built-In-Types"><a href="#Built-In-Types" class="headerlink" title="Built-In Types"></a>Built-In Types</h2><p>In JavaScript, there are no true integers, all numbers are implemented in double-precision 64-bit binary format IEEE 754. When we use binary floating-point numbers, it will have some side effects.</p>
+<p>Here is an example of these side effects.<br>0.1 + 0.2 == 0.3 // false</p>
+<p>For the primitive data types, when we use literals to initialize a variable, the variable only has the literals as its value, it doesn’t have a type. It will be converted to the corresponding type only when necessary.</p>
+<p>1 + ‘1’ // ‘11’<br>2 * ‘2’ // 4 // ‘2’ will coerce to 2.<br>[1, 2] + [2, 1] // ‘1,22,1’</p>
+<p>Note the expression ‘a’ + + ‘b’ for addition:<br>‘a’ + + ‘b’ // -&gt; “aNaN” // + ‘b’ represent +b, if b not a number, will get NaN. Then ‘a’ + ‘NaN’ =&gt; ‘aNaN’.</p>
+<h2 id="New"><a href="#New" class="headerlink" title="New"></a>New</h2><ol>
+<li>Create a new object</li>
+<li>Chained to prototype</li>
+<li>Bind this</li>
+<li>Return a new object<br>It is recommended to create objects using the literal notation (whether it’s for performance or readability), since a look-up is needed for Object through the scope chain when creating an object using new Object(), but you don’t have this kind of problem when using literals.</li>
+</ol>
+<p>For new, we also need pay attention to the operator precedence:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line">Foo.getName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'1'</span>);</span><br><span class="line">&#125;;</span><br><span class="line">Foo.prototype.getName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'2'</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Foo.getName();   <span class="comment">// -&gt; 1</span></span><br><span class="line"><span class="keyword">new</span> Foo().getName(); <span class="comment">// -&gt; 2</span></span><br></pre></td></tr></table></figure></p>
+<p>As you can see from the above image, <strong>new Foo() has a higher priority than new Foo,</strong> so we can divide the execution order of the above code like this:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> (Foo.getName());</span><br><span class="line">(<span class="keyword">new</span> Foo()).getName();</span><br></pre></td></tr></table></figure></p>
+<p>For the first function, Foo.getName() is executed first, so the result is 1; As for the latter, it first executes new Foo() to create an instance, then finds the getName function on Foo via the prototype chain, so the result is 2.</p>
+<h2 id="Scope"><a href="#Scope" class="headerlink" title="Scope"></a>Scope</h2><p>Executing JS code would generate execution context, as long as code is not written in a function, it belongs to the global execution context. Code in a function will generate function execution context. </p>
+<p>The [[Scope]] attribute is generated in the first stage of generating execution context, which is a pointer, corresponds to the linked list of the scope, and JS will look up variables through this linked list up to the global context.</p>
+<h3 id="hoisting"><a href="#hoisting" class="headerlink" title="hoisting"></a>hoisting</h3><p>There would be two stages when the execution context is generated. The first stage is the stage of creation(to be specific, the step of generating variable objects), in which the JS interpreter would find out variables and functions that need to be hoisted, and allocate memory for them in advance, then functions would be stored into memory entirely, but variables would only be declared and assigned to undefined, therefore, we can use them in advance in the second stage (the code execution stage).</p>
+<p>In the process of hoisting, the same function would overwrite the last function, and <strong>functions have higher priority than variables hoisting.</strong></p>
+<p>Using var is more likely error-prone, thus ES6 introduces a new keyword let. let has an important feature that it can’t be used before declared, which conflicts the common saying that let doesn’t have the ability of hoisting. In fact, let hoists declaration, but is not assigned, because the temporal dead zone.</p>
+<p>#class</p>
+<ul>
+<li>You can think of an object as a single data structure that contains data as well as functions; the functions of an object are called its methods. </li>
+</ul>
+<p>The <strong>repr</strong>() method defines what represents the object when a user tries to print that object using print.</p>
+<p>– CSS<br>vertical-align only applies to inline and table-cell elements: you can’t use it to vertically align block-level elements.<br>CSS align can only work in the element effect range!<br>inline element can’t set height<br>margin: 0 auto Only works on block.<br>float: float elements don’t contribute to parent’s height, it’s width is decided by content.</p>
+<h1 id="BOM"><a href="#BOM" class="headerlink" title="BOM"></a>BOM</h1><p>The Browser Object Model (BOM) is a browser-specific convention referring to all the objects exposed by the web browser. Unlike the Document Object Model, there is no standard for implementation and no strict definition, so browser vendors are free to implement the BOM in any way they wish.</p>
+<p>That which we see as a window displaying a document, the browser program sees as a hierarchical collection of objects. When the browser parses a document, it creates a collection of objects that define the document and detail how it should be displayed. The object the browser creates is known as the Document object. It is part of a larger collection of objects that the browser makes use of. This collection of browser objects is collectively known as the Browser Object Model, or BOM.</p>
+<p>The top level of the hierarchy is the window object, which contains the information about the window displaying the document. Some of the window object are objects themselves that describe the document and related information. </p>
+<p>#IndexedDB</p>
+<p>To sum up:</p>
+<pre><code>IndexedDB is a transactional Object Store in which you will be able to store JavaScript objects.
+Indexes on some properties of these objects facilitate faster retrieval and search.
+Applications using IndexedDB can work both online and offline.
+IndexedDB is transactional: it manages concurrent access to data.
+</code></pre><h3 id="What-is-the-difference-between-map-every-and-forEach"><a href="#What-is-the-difference-between-map-every-and-forEach" class="headerlink" title="What is the difference between .map, .every, and .forEach?"></a>What is the difference between .map, .every, and .forEach?</h3><p>The difference is in the return values.</p>
+<p>.map() returns a new Array of objects created by taking some action on the original item.</p>
+<p>.every() returns a boolean - true if every element in this array satisfies the provided testing function. An important difference with .every() is that the test function may not always be called for every element in the array. Once the testing function returns false for any element, no more array elements are iterated. Therefore, the testing function should usually have no side effects.</p>
+<p>.forEach() returns nothing - It iterates the Array performing a given action for each item in the Array.</p>
+<p>.every() (stops looping the first time the iterator returns false or something falsey)<br>.some() (stops looping the first time the iterator returns true or something truthy)<br>.filter() (creates a new array including elements where the filter function returns true and omitting the ones where it returns false)<br>.map() (creates a new array from the values returned by the iterator function)<br>.reduce() (builds up a value by repeated calling the iterator, passing in previous values; see the spec for the details; useful for summing the contents of an array and many other things)<br>.reduceRight() (like reduce, but works in descending rather than ascending order)</p>
+<h1 id="VueJS"><a href="#VueJS" class="headerlink" title="VueJS"></a>VueJS</h1><h2 id="Component"><a href="#Component" class="headerlink" title="Component"></a>Component</h2><ol>
+<li><p>component name:<br>When using a component directly in the DOM (as opposed to in a string template or single-file component), we strongly recommend following the W3C rules for custom tag names (all-lowercase, must contain a hyphen). This helps you avoid conflicts with current and future HTML elements.</p>
+</li>
+<li><p>Global registration<br>These components are globally registered. That means they can be used in the template of any root Vue instance (new Vue) created after registration.<br>This even applies to all subcomponents, meaning all three of these components will also be available inside each other.</p>
+</li>
+<li><p>Local Registration<br>Global registration often isn’t ideal. For example, if you’re using a build system like Webpack, globally registering all components means that even if you stop using a component, it could still be included in your final build. This unnecessarily increases the amount of JavaScript your users have to download.<br>Note that locally registered components are not also available in subcomponents.For example, if you wanted ComponentA to be available in ComponentB,You have to:</p>
+</li>
+</ol>
+<ul>
+<li>using ES2015 modules</li>
+<li>Or define a components property in object ComponentB.</li>
+</ul>
+<ol start="4">
+<li>with webpack:<br>Remember that global registration must take place before the root Vue instance is created (with new Vue).</li>
+</ol>
+<h2 id="Vue-Instance"><a href="#Vue-Instance" class="headerlink" title="Vue Instance"></a>Vue Instance</h2><ol>
+<li>When a Vue instance is created, <strong>it adds all the properties found in its data object to Vue’s reactivity system</strong>. When the values of those properties change, the view will “react”, updating to match the new values.</li>
+<li>When this data changes, the view will re-render. It should be noted that properties in data are <strong>only reactive if they existed when the instance was created</strong> .</li>
+<li>The <strong>only exception to this being the use of Object.freeze()</strong>, which prevents existing properties from being changed, which also means the reactivity system can’t track changes.</li>
+<li>In addition to data properties, Vue instances expose a number of useful instance properties and methods. These are <strong>prefixed with $</strong> to differentiate them from user-defined properties.</li>
+</ol>
+<h2 id="Conditionnal-Rendering"><a href="#Conditionnal-Rendering" class="headerlink" title="Conditionnal Rendering"></a>Conditionnal Rendering</h2><ol>
+<li>so Vue offers a way for you to say, These two elements are completely separate don’t re-use them. <strong>Add a key</strong> attribute with unique values.</li>
+<li>The difference is that an element with v-show will always be rendered and remain in the DOM; v-show <strong>only toggles the display CSS property</strong> of the element.</li>
+</ol>
+<p>Note that v-show doesn’t support the <template> element, nor does it work with v-else.</template></p>
+<ol start="3">
+<li>v-if vs v-show</li>
+</ol>
+<p>v-if is “real” conditional rendering because it ensures that event listeners and child components inside the conditional block are properly destroyed and re-created during toggles.</p>
+<p>v-if is also lazy: if the condition is false on initial render, it will not do anything - the conditional block won’t be rendered until the condition becomes true for the first time.</p>
+<p>In comparison, v-show is much simpler - the element is always rendered regardless of initial condition, with CSS-based toggling.</p>
+<p>Generally speaking, v-if has higher toggle costs while v-show has higher initial render costs. So prefer v-show if you need to toggle something very often, and prefer v-if if the condition is unlikely to change at runtime.</p>
+<ol start="4">
+<li>Using v-if and v-for together is not recommended.When used together with v-if, v-for has a higher priority than v-if.</li>
+</ol>
+<h2 id="List-Rendering"><a href="#List-Rendering" class="headerlink" title="List Rendering"></a>List Rendering</h2><ol>
+<li>Due to limitations in JavaScript, Vue cannot detect the following changes to an array:<br>When you directly set an item with the index, e.g. vm.items[indexOfItem] = newValue<br>When you modify the length of the array, e.g. vm.items.length = newLength</li>
+</ol>
+<p><strong>To overcome caveat 1</strong>, both of the following will accomplish the same as vm.items[indexOfItem] = newValue, but will also trigger state updates in the reactivity system:</p>
+<p>// Vue.set<br>Vue.set(vm.items, indexOfItem, newValue)</p>
+<p>// Array.prototype.splice<br>vm.items.splice(indexOfItem, 1, newValue)</p>
+<p>You can also use the vm.$set instance method, which is an alias for the global Vue.set:</p>
+<p>vm.$set(vm.items, indexOfItem, newValue)</p>
+<p><strong>To deal with caveat 2</strong>, you can use splice:</p>
+<p>vm.items.splice(newLength)</p>
+<ol start="2">
+<li>Again due to limitations of modern JavaScript, Vue cannot detect property addition or deletion.<br>Vue does not allow dynamically adding new root-level reactive properties to an already created instance. However, it’s possible to add reactive properties to a nested object using the Vue.set(object, key, value) method. </li>
+</ol>
+<p>You could add a new age property to the nested userProfile object with:</p>
+<p>Vue.set(vm.userProfile, ‘age’, 27)</p>
+<p>You can also use the vm.$set instance method, which is an alias for the global Vue.set:</p>
+<p>vm.$set(vm.userProfile, ‘age’, 27)</p>
+<ol start="3">
+<li>Sometimes you may want to assign a number of new properties to an existing object, for example using Object.assign() or _.extend(). In such cases, you should create a fresh object with properties from both objects. </li>
+</ol>
+<p>You would add new, reactive properties with:</p>
+<p>vm.userProfile = Object.assign({}, vm.userProfile, {<br>  age: 27,<br>  favoriteColor: ‘Vue Green’<br>})</p>
+<h3 id="rest-parameters"><a href="#rest-parameters" class="headerlink" title="rest parameters"></a>rest parameters</h3><ol>
+<li><p>A function’s last parameter can be prefixed with … which will cause all remaining (user supplied) arguments to be placed within a “standard” javascript array. Only the last parameter can be a “rest parameter”.</p>
+</li>
+<li><p>Difference between rest parameters and the arguments object</p>
+<p> rest parameters are only the ones that haven’t been given a separate name (i.e. formally defined in function expression), while the arguments object contains all arguments passed to the function;<br> the arguments object is not a real array, while rest parameters are Array instances, meaning methods like sort, map, forEach or pop can be applied on it directly;<br> the arguments object has additional functionality specific to itself (like the callee property).</p>
+</li>
+</ol>
+<h3 id="spread-syntax"><a href="#spread-syntax" class="headerlink" title="spread syntax"></a>spread syntax</h3><p>Syntax</p>
+<p>For function calls:</p>
+<p>myFunction(…iterableObj);</p>
+<p>For array literals or strings:</p>
+<p>[…iterableObj, ‘4’, ‘five’, 6];</p>
+<p>For object literals (new in ECMAScript 2018):</p>
+<p>let objClone = { …obj };</p>
+<h3 id="shallow-copy"><a href="#shallow-copy" class="headerlink" title="shallow copy"></a>shallow copy</h3><p>Object.assign()</p>
+<ol>
+<li>Properties in the target object will be overwritten by properties in the sources if they have the same key.  Later sources’ properties will similarly overwrite earlier ones.  </li>
+</ol>
+<p>The Object.assign() method only copies enumerable and own properties from a source object to a target object. It uses [[Get]] on the source and [[Set]] on the target, so it will invoke getters and setters. Therefore it assigns properties versus just copying or defining new properties. This may make it unsuitable for merging new properties into a prototype if the merge sources contain getters. For copying property definitions, including their enumerability, into prototypes Object.getOwnPropertyDescriptor() and Object.defineProperty() should be used instead.</p>
+<p>Both String and Symbol properties are copied.</p>
+<p>In case of an error, for example if a property is non-writable, a TypeError will be raised, and the target object can be changed if any properties are added before error is raised.</p>
+<p>Note that Object.assign() does not throw on null or undefined source values.</p>
+<ol start="2">
+<li>Object.assign() copies property values. If the source value is a reference to an object, it only copies that reference value.</li>
+</ol>
+<h3 id="deep-copy"><a href="#deep-copy" class="headerlink" title="deep copy"></a>deep copy</h3><p>var obj2 = JSON.parse(JSON.stringify(obj1));</p>
+<h2 id="Recursive"><a href="#Recursive" class="headerlink" title="Recursive"></a>Recursive</h2><p>The (1) is the base of recursion, the trivial case.</p>
+<p>The (2) is the recursive step.</p>
+<h3 id="execution-context"><a href="#execution-context" class="headerlink" title="execution context"></a>execution context</h3><p>The information about a function run is stored in its execution context.</p>
+<p>The execution context is an internal data structure that contains details about the execution of a function: where the control flow is now, the current variables, the value of this (we don’t use it here) and few other internal details.</p>
+<p>One function call has exactly one execution context associated with it.</p>
+<h3 id="for-…-of"><a href="#for-…-of" class="headerlink" title="for … of"></a>for … of</h3><p>Note: for … of only works for Array-like Object, typical object can not directly use it, must use <strong>for (let item of Object.values(object))</strong></p>
+<h4 id="Seperation-of-Concerns"><a href="#Seperation-of-Concerns" class="headerlink" title="Seperation of Concerns"></a>Seperation of Concerns</h4><p>A key principle of software development and architecture is the notion of separation of Separation-of-Concerns-Feb-2013concerns.  At a low level, this principle is closely related to the Single Responsibility Principle of object oriented programming.  The general idea is that one should avoid co-locating different concerns within the design or code.  For instance, if your application includes business logic for identifying certain noteworthy items to display to the user, and your application formats such items in a certain way to make them more noticeable, it would violate separation of concerns if both the logic for determining which items were noteworthy and the formatting of these items were in the same place.  The design would be more maintainable, less tightly coupled, and less likely to violate the Don’t Repeat Yourself principle if the logic for determining which items needed formatted were located in a single location (with other business logic), and were exposed to the user interface code responsible for formatting simply as a property.</p>
+<p>At an architectural level, separation of concerns is a key component of building layered applications.  In a traditional N-tier application structure, layers might include data access, business logic, and user interface.  More modern N-tier application designs might include a core domain model and separate infrastructure modules in addition to one or more front end services and/or user interfaces.  Web pages, to a greater or lesser degree, separate concerns relating to structure, logic, and formatting through the use of HTML, JavaScript, and CSS.  At a lower level,the networking model used by the Internet is broken into a series of layers each with specific concerns and responsibilities, and demonstrates how separation of concerns can be effectively applied.</p>
+<p>In addition to separating logic across programming layers, one can also separate concerns along application feature sets.  Applications may be written to allow functionality to be added or removed in a modular fashion, and many commercial products support this functionality as a means of separating features across product SKUs or to allow third parties to create plug-ins.</p>
+<p>Separation of Concerns tends to be a natural consequence of following the Don’t Repeat Yourself principle, since of necessity abstractions must be built to encapsulate concepts that would otherwise be repeated throughout the application.  As long as these abstractions are logically grouped and organized, then Separation of Concerns should be achieved.</p>
+<h3 id="why-0-1-0-2-0-3"><a href="#why-0-1-0-2-0-3" class="headerlink" title="why 0.1 + 0.2 != 0.3"></a>why 0.1 + 0.2 != 0.3</h3><p>Floating Point Math</p>
+<p>Your language isn’t broken, it’s doing floating point math. Computers can only natively store integers, so they need some way of representing decimal numbers. This representation comes with some degree of inaccuracy. That’s why, more often than not, .1 + .2 != .3.<br>Why does this happen?</p>
+<p>It’s actually pretty simple. When you have a base 10 system (like ours), it can only express fractions that use a prime factor of the base. The prime factors of 10 are 2 and 5. So 1/2, 1/4, 1/5, 1/8, and 1/10 can all be expressed cleanly because the denominators all use prime factors of 10. In contrast, 1/3, 1/6, and 1/7 are all repeating decimals because their denominators use a prime factor of 3 or 7. In binary (or base 2), the only prime factor is 2. So you can only express fractions cleanly which only contain 2 as a prime factor. In binary, 1/2, 1/4, 1/8 would all be expressed cleanly as decimals. While, 1/5 or 1/10 would be repeating decimals. So 0.1 and 0.2 (1/10 and 1/5) while clean decimals in a base 10 system, are repeating decimals in the base 2 system the computer is operating in. When you do math on these repeating decimals, you end up with leftovers which carry over when you convert the computer’s base 2 (binary) number into a more human readable base 10 number.</p>
+<p>Below are some examples of sending .1 + .2 to standard output in a variety of languages.</p>
+<p>read more: | wikipedia | IEEE 754 | Stack Overflow | What Every Computer Scientist Should Know About Floating-Point Arithmetic</p>
+<h3 id="Time-based-animation"><a href="#Time-based-animation" class="headerlink" title="Time-based animation"></a>Time-based animation</h3><ol>
+<li><p>Your application runs on different devices, and where 60 frames/s are definitely not possible. More generally, you want your animated objects to move at the same speed on screen, regardless of the device that runs the game.</p>
+</li>
+<li><p>You want to perform some animations only a few times per second. For example, in sprite-based animation (drawing different images as a character moves, for example), you will not change the images of the animation 60 times/s, but only ten times per second. Mario will walk on the screen in a 60 fps animation, but his posture will not change every 1/60th of second.</p>
+</li>
+<li><p>You may also want to accurately set the framerate, leaving some CPU time for other tasks. Many games consoles limit the frame-rate to 1/30th of a second, in order to allow time for other sorts of computations (physics engine, artificial intelligence, etc.)</p>
+</li>
+</ol>
+<p><strong>High Resolution Time API</strong>:  “The only method exposed is now(), which returns a DOMHighResTimeStamp representing the current time in milliseconds. The timestamp is very accurate, with precision to a thousandth of a millisecond. </p>
+<p>Please note that while <strong>Date.now()</strong> returns the number of milliseconds elapsed since 1 January 1970 00:00:00 UTC,<strong>performance.now()</strong> returns the number of milliseconds, with microseconds in the fractional part, from performance.timing.navigationStart(), the start of navigation of the document, to the performance.now() call.</p>
+<p>Another important difference between Date.now() and performance.now() is that the latter is monotonically increasing, so the difference between two calls will never be negative.”</p>
+<h3 id="Promise"><a href="#Promise" class="headerlink" title="Promise:"></a>Promise:</h3><p>Important: Always return results, otherwise callbacks won’t catch the result of a previous promise (with arrow functions () =&gt; x is short for () =&gt; { return x; }).</p>
+<p>Promises solve a fundamental flaw with the callback pyramid of doom, by catching all errors, even thrown exceptions and programming errors. This is essential for functional composition of asynchronous operations.</p>
+<p>A Promise can be created from scratch using its constructor. This should be needed only to wrap old APIs.Mixing old-style callbacks and promises is problematic. If saySomething() fails or contains a programming error, nothing catches it. setTimeout is to blame for this.</p>
+<p>Nesting is a control structure to limit the scope of catch statements. Specifically, a nested catch only catches failures in its scope and below, not errors higher up in the chain outside the nested scope. When used correctly, this gives greater precision in error recovery:</p>
+<h3 id="script-async-defer"><a href="#script-async-defer" class="headerlink" title="script async defer"></a>script async defer</h3><p>For classic scripts, if the async attribute is present, then the classic script will be fetched in parallel to parsing and evaluated as soon as it is available (potentially before parsing completes). If the async attribute is not present but the defer attribute is present, then the classic script will be fetched in parallel and evaluated when the page has finished parsing. If neither attribute is present, then the script is fetched and evaluated immediately, blocking parsing until these are both complete.</p>
+<p>For module scripts, if the async attribute is present, then the module script and all its dependencies will be fetched in parallel to parsing, and the module script will be evaluated as soon as it is available (potentially before parsing completes). Otherwise, the module script and its dependencies will be fetched in parallel to parsing and evaluated when the page has finished parsing. (The defer attribute has no effect on module scripts.)</p>
+
+    </div>
+</article>
+                </main>
+                <aside class="aside">
+                    <section class="aside-section">
+                        
+    <h1>Categories</h1>
+
+    
+
+                    </section>
+                    <section class="aside-section">
+                        
+    <h1>Archives</h1>
+
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a></li></ul>
+
+
+                    </section>
+                    <section class="aside-section tag">
+                        
+    <h1>Tags</h1>
+
+    <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
+
+                    </section>
+                </aside>
+        </div>
+    </body>
+
+</html>
