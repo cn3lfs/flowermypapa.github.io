@@ -72,57 +72,41 @@
     </nav>
 </header>
                 <main class="main">
-                    
-<section class="posts">
+                    <article class="post">
     
-        <article class="post">
-            
-                    <h1 class="post-title">
-                        <a href="/2018/07/20/computed-watch/">
-                            VueJS:when to use computed/watch
-                        </a>
-                    </h1>
+    
+    
+    <h2 class="post-title">
+        virtual_dom
+    </h2>
+    <ul class="post-date">
+        <li>
+            2019-01-22
+        </li>
+        <li>
+            flowermypapa
+        </li>
+    </ul>
+    <div class="post-content">
+        <p><a href="https://www.codecademy.com/articles/react-virtual-dom" target="_blank" rel="noopener">React: The Virtual DOM</a></p>
+<p>The Problem</p>
+<p>DOM manipulation is the heart of the modern, interactive web. Unfortunately, it is also a lot slower than most JavaScript operations.</p>
+<p>This slowness is made worse by the fact that most JavaScript frameworks update the DOM much more than they have to.<br>To address this problem, the people at React popularized something called the virtual DOM.</p>
+<p>The Virtual DOM</p>
+<p>In React, for every DOM object, there is a corresponding “virtual DOM object.” A virtual DOM object is a representation of a DOM object, like a lightweight copy.</p>
+<p>A virtual DOM object has the same properties as a real DOM object, but it lacks the real thing’s power to directly change what’s on the screen.</p>
+<p>Manipulating the DOM is slow. Manipulating the virtual DOM is much faster, because nothing gets drawn onscreen. Think of manipulating the virtual DOM as editing a blueprint, as opposed to moving rooms in an actual house.</p>
+<p><a href="https://vuejs.org/v2/guide/render-function.html#The-Virtual-DOM" target="_blank" rel="noopener">Vue: The Virtual DOM</a></p>
+<p>Vue accomplishes this by building a virtual DOM to keep track of the changes it needs to make to the real DOM. Taking a closer look at this line:</p>
+<p>return createElement(‘h1’, this.blogTitle)</p>
+<p>What is createElement actually returning? It’s not exactly a real DOM element. It could perhaps more accurately be named createNodeDescription, as it contains information describing to Vue what kind of node it should render on the page, including descriptions of any child nodes. We call this node description a “virtual node”, usually abbreviated to VNode. “Virtual DOM” is what we call the entire tree of VNodes, built by a tree of Vue components.</p>
+<p><a href="https://medium.com/js-dojo/whats-the-deal-with-vue-s-virtual-dom-3ed4fc0dbb20" target="_blank" rel="noopener">What’s The Deal With Vue’s Virtual DOM?</a></p>
+<p>Reminding ourselves what the DOM actually is</p>
+<p>We tend think of the DOM as the HTML document it represents. But actually the DOM is a tree-like data structure that comes into existence once an HTML document has been parsed by the browser.</p>
+<p>The browser paints the DOM to the screen and will repaint it in response to user actions (e.g. mouse clicks) and updates via its API from your Javascript scripts e.g. document.createElement.</p>
 
-                    <ul class="post-date">
-                        <li>
-                            July 20, 2018
-                        </li>
-                        <li>
-                            flowermypapa
-                        </li>
-                    </ul>
-                    
-                    <div class="post-content ">
-                        
-                            <a href="/2018/07/20/computed-watch/" class="more-link">Continue reading</a>
-                    </div>
-        </article>
-        
-        <article class="post">
-            
-                    <h1 class="post-title">
-                        <a href="/2018/06/29/vue/">
-                            vue
-                        </a>
-                    </h1>
-
-                    <ul class="post-date">
-                        <li>
-                            June 29, 2018
-                        </li>
-                        <li>
-                            flowermypapa
-                        </li>
-                    </ul>
-                    
-                    <div class="post-content ">
-                        
-                            <a href="/2018/06/29/vue/" class="more-link">Continue reading</a>
-                    </div>
-        </article>
-        
-</section>
-
+    </div>
+</article>
                 </main>
                 <aside class="aside">
                     <section class="aside-section">
