@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>es2015-spread-syntax-and-rest-params | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Spread syntaxSpread syntax allows an iterable such as an array expression or string to be expanded in places where zero or more arguments (for function calls) or elements (for array literals) are expe">
+<meta name="keywords" content="ES2015">
+<meta property="og:type" content="article">
+<meta property="og:title" content="es2015-spread-syntax-and-rest-params">
+<meta property="og:url" content="http://yoursite.com/2019/03/02/es2015-spread-syntax-and-rest-params/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Spread syntaxSpread syntax allows an iterable such as an array expression or string to be expanded in places where zero or more arguments (for function calls) or elements (for array literals) are expe">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-02T11:20:33.544Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="es2015-spread-syntax-and-rest-params">
+<meta name="twitter:description" content="Spread syntaxSpread syntax allows an iterable such as an array expression or string to be expanded in places where zero or more arguments (for function calls) or elements (for array literals) are expe">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-es2015-spread-syntax-and-rest-params" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/02/es2015-spread-syntax-and-rest-params/" class="article-date">
+  <time datetime="2019-03-02T08:54:26.000Z" itemprop="datePublished">2019-03-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      es2015-spread-syntax-and-rest-params
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Spread-syntax"><a href="#Spread-syntax" class="headerlink" title="Spread syntax"></a>Spread syntax</h2><p>Spread syntax allows an iterable such as an array expression or string to be expanded in places where zero or more arguments (for function calls) or elements (for array literals) are expected, or an object expression to be expanded in places where zero or more key-value pairs (for object literals) are expected.</p>
+<h3 id="Syntax"><a href="#Syntax" class="headerlink" title="Syntax"></a>Syntax</h3><p>For function calls:</p>
+<pre><code>myFunction(...iterableObj);
+</code></pre><p>For array literals or strings:</p>
+<pre><code>[...iterableObj, &apos;4&apos;, &apos;five&apos;, 6];
+</code></pre><p>For object literals (new in ECMAScript 2018):</p>
+<pre><code>let objClone = { ...obj };
+</code></pre><h3 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h3><h4 id="Spread-in-function-calls"><a href="#Spread-in-function-calls" class="headerlink" title="Spread in function calls"></a>Spread in function calls</h4><p><strong>Replace apply</strong><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myFunction</span>(<span class="params">x, y, z</span>) </span>&#123; &#125;</span><br><span class="line"><span class="keyword">var</span> args = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line">myFunction.apply(<span class="literal">null</span>, args);</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myFunction</span>(<span class="params">x, y, z</span>) </span>&#123; &#125;</span><br><span class="line"><span class="keyword">var</span> args = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line">myFunction(...args);</span><br></pre></td></tr></table></figure>
+<p><strong>Apply for new</strong><br>When calling a constructor with new, it’s not possible to directly use an array and apply (apply does a [[Call]] and not a [[Construct]]). However, an array can be easily used with new thanks to spread syntax:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> dateFields = [<span class="number">1970</span>, <span class="number">0</span>, <span class="number">1</span>];  <span class="comment">// 1 Jan 1970</span></span><br><span class="line"><span class="keyword">var</span> d = <span class="keyword">new</span> <span class="built_in">Date</span>(...dateFields);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">applyAndNew</span>(<span class="params">constructor, args</span>) </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">function</span> <span class="title">partial</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">constructor</span>.apply(this, args);</span><br><span class="line">   &#125;;</span><br><span class="line">   if (typeof <span class="keyword">constructor</span>.prototype === "object") &#123;</span><br><span class="line">      partial.prototype = <span class="built_in">Object</span>.create(<span class="keyword">constructor</span>.prototype);</span><br><span class="line">   &#125;</span><br><span class="line">   return partial;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">function myConstructor () &#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="string">"arguments.length: "</span> + <span class="built_in">arguments</span>.length);</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="built_in">arguments</span>);</span><br><span class="line">   <span class="keyword">this</span>.prop1=<span class="string">"val1"</span>;</span><br><span class="line">   <span class="keyword">this</span>.prop2=<span class="string">"val2"</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> myArguments = [<span class="string">"hi"</span>, <span class="string">"how"</span>, <span class="string">"are"</span>, <span class="string">"you"</span>, <span class="string">"mr"</span>, <span class="literal">null</span>];</span><br><span class="line"><span class="keyword">var</span> myConstructorWithArguments = applyAndNew(myConstructor, myArguments);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">new</span> myConstructorWithArguments);</span><br><span class="line"><span class="comment">// (internal log of myConstructor):           arguments.length: 6</span></span><br><span class="line"><span class="comment">// (internal log of myConstructor):           ["hi", "how", "are", "you", "mr", null]</span></span><br><span class="line"><span class="comment">// (log of "new myConstructorWithArguments"): &#123;prop1: "val1", prop2: "val2"&#125;</span></span><br></pre></td></tr></table></figure>
+<h4 id="Spread-in-array-literals"><a href="#Spread-in-array-literals" class="headerlink" title="Spread in array literals"></a>Spread in array literals</h4><p><strong>A more powerful array literal</strong></p>
+<p>Without spread syntax, to create a new array using an existing array as one part of it, the array literal syntax is no longer sufficient and imperative code must be used instead using a combination of push, splice, concat, etc. With spread syntax this becomes much more succinct:</p>
+<p><strong>Copy an array</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">var</span> arr2 = [...arr]; <span class="comment">// like arr.slice()</span></span><br><span class="line">arr2.push(<span class="number">4</span>); </span><br><span class="line"></span><br><span class="line"><span class="comment">// arr2 becomes [1, 2, 3, 4]</span></span><br><span class="line"><span class="comment">// arr remains unaffected</span></span><br></pre></td></tr></table></figure>
+<p>Note: Spread syntax effectively goes one level deep while copying an array. Therefore, it may be unsuitable for copying multidimensional arrays as the following example shows (it’s the same with Object.assign() and spread syntax).</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [[<span class="number">1</span>], [<span class="number">2</span>], [<span class="number">3</span>]];</span><br><span class="line"><span class="keyword">var</span> b = [...a];</span><br><span class="line">b.shift().shift(); <span class="comment">// 1</span></span><br><span class="line"><span class="comment">// Now array a is affected as well: [[], [2], [3]]</span></span><br></pre></td></tr></table></figure>
+<p><strong>A better way to concatenate arrays</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr1 = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line"><span class="keyword">var</span> arr2 = [<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="comment">// Append all items from arr2 onto arr1</span></span><br><span class="line">arr1 = arr1.concat(arr2);</span><br></pre></td></tr></table></figure>
+<p>With spread syntax this becomes:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr1 = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line"><span class="keyword">var</span> arr2 = [<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line">arr1 = [...arr1, ...arr2]; <span class="comment">// arr1 is now [0, 1, 2, 3, 4, 5]</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="Spread-in-object-literals"><a href="#Spread-in-object-literals" class="headerlink" title="Spread in object literals"></a>Spread in object literals</h4><p>The Rest/Spread Properties for ECMAScript proposal (stage 4) adds spread properties to object literals. It copies own enumerable properties from a provided object onto a new object.</p>
+<p>Shallow-cloning (excluding prototype) or merging of objects is now possible using a shorter syntax than Object.assign().<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj1 = &#123; <span class="attr">foo</span>: <span class="string">'bar'</span>, <span class="attr">x</span>: <span class="number">42</span> &#125;;</span><br><span class="line"><span class="keyword">var</span> obj2 = &#123; <span class="attr">foo</span>: <span class="string">'baz'</span>, <span class="attr">y</span>: <span class="number">13</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> clonedObj = &#123; ...obj1 &#125;;</span><br><span class="line"><span class="comment">// Object &#123; foo: "bar", x: 42 &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> mergedObj = &#123; ...obj1, ...obj2 &#125;;</span><br><span class="line"><span class="comment">// Object &#123; foo: "baz", x: 42, y: 13 &#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>Note that Object.assign() triggers setters whereas spread syntax doesn’t.</p>
+<p>Note that you cannot replace nor mimic the Object.assign() function:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj1 = &#123; <span class="attr">foo</span>: <span class="string">'bar'</span>, <span class="attr">x</span>: <span class="number">42</span> &#125;;</span><br><span class="line"><span class="keyword">var</span> obj2 = &#123; <span class="attr">foo</span>: <span class="string">'baz'</span>, <span class="attr">y</span>: <span class="number">13</span> &#125;;</span><br><span class="line"><span class="keyword">const</span> merge = <span class="function">(<span class="params"> ...objects </span>) =&gt;</span> ( &#123; ...objects &#125; );</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> mergedObj = merge ( obj1, obj2);</span><br><span class="line"><span class="comment">// Object &#123; 0: &#123; foo: 'bar', x: 42 &#125;, 1: &#123; foo: 'baz', y: 13 &#125; &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> mergedObj = merge ( &#123;&#125;, obj1, obj2);</span><br><span class="line"><span class="comment">// Object &#123; 0: &#123;&#125;, 1: &#123; foo: 'bar', x: 42 &#125;, 2: &#123; foo: 'baz', y: 13 &#125; &#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>In the above example, the spread syntax does not work as one might expect: it spreads an array of arguments into the object literal, due to the rest parameter.</p>
+<h2 id="Rest-Syntax"><a href="#Rest-Syntax" class="headerlink" title="Rest Syntax"></a>Rest Syntax</h2><p>the rest parameter syntax allows us to represent an indefinite number of arguments as an array.</p>
+<h3 id="Syntax-1"><a href="#Syntax-1" class="headerlink" title="Syntax"></a>Syntax</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">a, b, ...theArgs</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">...theArgs</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> theArgs.reduce(<span class="function">(<span class="params">previous, current</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> previous + current;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(sum(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>));</span><br><span class="line"><span class="comment">// expected output: 6</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(sum(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>));</span><br><span class="line"><span class="comment">// expected output: 10</span></span><br></pre></td></tr></table></figure>
+<h2 id="Destructuring-assignment"><a href="#Destructuring-assignment" class="headerlink" title="Destructuring assignment"></a>Destructuring assignment</h2><p>The destructuring assignment syntax is a JavaScript expression that makes it possible to unpack values from arrays, or properties from objects, into distinct variables.</p>
+<h3 id="Syntax-2"><a href="#Syntax-2" class="headerlink" title="Syntax"></a>Syntax</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a, b, rest;</span><br><span class="line">[a, b] = [<span class="number">10</span>, <span class="number">20</span>];</span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">// 10</span></span><br><span class="line"><span class="built_in">console</span>.log(b); <span class="comment">// 20</span></span><br><span class="line"></span><br><span class="line">[a, b, ...rest] = [<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>, <span class="number">50</span>];</span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">// 10</span></span><br><span class="line"><span class="built_in">console</span>.log(b); <span class="comment">// 20</span></span><br><span class="line"><span class="built_in">console</span>.log(rest); <span class="comment">// [30, 40, 50]</span></span><br><span class="line"></span><br><span class="line">(&#123; a, b &#125; = &#123; <span class="attr">a</span>: <span class="number">10</span>, <span class="attr">b</span>: <span class="number">20</span> &#125;);</span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">// 10</span></span><br><span class="line"><span class="built_in">console</span>.log(b); <span class="comment">// 20</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// Stage 4(finished) proposal</span></span><br><span class="line">(&#123;a, b, ...rest&#125; = &#123;<span class="attr">a</span>: <span class="number">10</span>, <span class="attr">b</span>: <span class="number">20</span>, <span class="attr">c</span>: <span class="number">30</span>, <span class="attr">d</span>: <span class="number">40</span>&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">// 10</span></span><br><span class="line"><span class="built_in">console</span>.log(b); <span class="comment">// 20</span></span><br><span class="line"><span class="built_in">console</span>.log(rest); <span class="comment">// &#123;c: 30, d: 40&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="Difference-between-spread-syntax-and-rest-syntax"><a href="#Difference-between-spread-syntax-and-rest-syntax" class="headerlink" title="Difference between spread syntax and rest syntax"></a>Difference between spread syntax and rest syntax</h2><p>Rest syntax looks exactly like spread syntax, but is used for destructuring arrays and objects. In a way, rest syntax is the opposite of spread syntax: spread ‘expands’ an array into its elements, while rest collects multiple elements and ‘condenses’ them into a single element.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/02/es2015-spread-syntax-and-rest-params/" data-id="cjsswct3l0000vwwlwlym89dk" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES2015/">ES2015</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/03/03/eloquent-javascript-chapter-01/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          eloquent_javascript_chapter_01
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/03/02/js-data-structures/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">js-data-structures</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES2015/">ES2015</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-structures/">data structures</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/ES2015/" style="font-size: 20px;">ES2015</a> <a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/Vue/" style="font-size: 15px;">Vue</a> <a href="/tags/data-structures/" style="font-size: 10px;">data structures</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/03/eloquent-javascript-chapter-01/">eloquent_javascript_chapter_01</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/02/es2015-spread-syntax-and-rest-params/">es2015-spread-syntax-and-rest-params</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/02/js-data-structures/">js-data-structures</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/02/es2015-data-types/">es2015-data-types</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/26/data-structures-js/">data-structures-js</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 flowermypapa<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

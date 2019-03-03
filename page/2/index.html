@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="default">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-vue" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/29/vue/" class="article-date">
+  <time datetime="2018-06-29T03:01:12.000Z" itemprop="datePublished">2018-06-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/29/vue/">vue</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>vue data update<br>When this data changes, the view will re-render. It should be noted that properties in data are only reactive if they existed when the instance was created. That means if you add a new property, like:</li>
+</ol>
+<p>The only exception to this being the use of Object.freeze(), which prevents existing properties from being changed, which also means the reactivity system can’t track changes.</p>
+<p>In addition to data properties, Vue instances expose a number of useful instance properties and methods. These are prefixed with $ to differentiate them from user-defined properties.</p>
+<ol start="2">
+<li>computed properties vs methods</li>
+</ol>
+<p>instead of a computed property, we can define the same function as a method instead. For the end result, the two approaches are indeed exactly the same. However, the difference is that computed properties are cached based on their dependencies. A computed property will only re-evaluate when some of its dependencies have changed. This means as long as message has not changed, multiple access to the reversedMessage computed property will immediately return the previously computed result without having to run the function again.</p>
+<p>In comparison, a method invocation will always run the function whenever a re-render happens.</p>
+<p>Why do we need caching? Imagine we have an expensive computed property A, which requires looping through a huge Array and doing a lot of computations. Then we may have other computed properties that in turn depend on A. Without caching, we would be executing A’s getter many more times than necessary! In cases where you do not want caching, use a method instead.</p>
+<ol start="3">
+<li>computed property vs watch property<br>However, it is often a better idea to use a computed property rather than an imperative watch callback. </li>
+</ol>
+<ol start="4">
+<li>v-if multiple element</li>
+</ol>
+<p>Because v-if is a directive, it has to be attached to a single element. But what if we want to toggle more than one element? In this case we can use v-if on a <template> element, which serves as an invisible wrapper. The final rendered result will not include the <template> element.<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">v-if</span>=<span class="string">"ok"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Paragraph 1<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Paragraph 2<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure></template></template></p>
+<ol start="5">
+<li>v-if and key<br>Vue tries to render elements as efficiently as possible, often re-using them instead of rendering from scratch. Beyond helping make Vue very fast, this can have some useful advantages.</li>
+</ol>
+<p>This isn’t always desirable though, so Vue offers a way for you to say, “These two elements are completely separate - don’t re-use them.” Add a key attribute with unique values:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">v-if</span>=<span class="string">"loginType === 'username'"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">label</span>&gt;</span>Username<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">placeholder</span>=<span class="string">"Enter your username"</span> <span class="attr">key</span>=<span class="string">"username-input"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">v-else</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">label</span>&gt;</span>Email<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">placeholder</span>=<span class="string">"Enter your email address"</span> <span class="attr">key</span>=<span class="string">"email-input"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>Now those inputs will be rendered from scratch each time you toggle. </p>
+<ol start="6">
+<li>v-if vs v-show</li>
+</ol>
+<p>v-if is “real” conditional rendering because it ensures that event listeners and child components inside the conditional block are properly destroyed and re-created during toggles.</p>
+<p>v-if is also lazy: if the condition is false on initial render, it will not do anything - the conditional block won’t be rendered until the condition becomes true for the first time.</p>
+<p>In comparison, v-show is much simpler - the element is always rendered regardless of initial condition, with CSS-based toggling.</p>
+<p>Generally speaking, v-if has higher toggle costs while v-show has higher initial render costs. So prefer v-show if you need to toggle something very often, and prefer v-if if the condition is unlikely to change at runtime.</p>
+<ol start="7">
+<li>v-for and key</li>
+</ol>
+<p>When Vue is updating a list of elements rendered with v-for, by default it uses an “in-place patch” strategy. If the order of the data items has changed, instead of moving the DOM elements to match the order of the items, Vue will patch each element in-place and make sure it reflects what should be rendered at that particular index. </p>
+<p>This default mode is efficient, but only suitable when your list render output does not rely on child component state or temporary DOM state (e.g. form input values).</p>
+<p>To give Vue a hint so that it can track each node’s identity, and thus reuse and reorder existing elements, you need to provide a unique key attribute for each item.<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">"item in items"</span> <span class="attr">:key</span>=<span class="string">"item.id"</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- content --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>It is recommended to provide a key with v-for whenever possible, unless the iterated DOM content is simple, or you are intentionally relying on the default behavior for performance gains.</p>
+<ol start="7">
+<li>array mutation methods and non-mutating methods<br>Mutation Methods</li>
+</ol>
+<p>Vue wraps an observed array’s mutation methods so they will also trigger view updates. The wrapped methods are:</p>
+<pre><code>push()
+pop()
+shift()
+unshift()
+splice()
+sort()
+reverse()
+</code></pre><p>In comparison, there are also non-mutating methods, e.g. filter(), concat() and slice(), which do not mutate the original array but always return a new array. When working with non-mutating methods, you can replace the old array with the new one:</p>
+<p>example1.items = example1.items.filter(function (item) {<br>  return item.message.match(/Foo/)<br>})</p>
+<ol start="8">
+<li>limit</li>
+</ol>
+<p>8.1<br>Due to limitations in JavaScript, Vue cannot detect the following changes to an array:</p>
+<pre><code>When you directly set an item with the index, e.g. vm.items[indexOfItem] = newValue
+When you modify the length of the array, e.g. vm.items.length = newLength
+</code></pre><p>To overcome caveat 1, both of the following will accomplish the same as vm.items[indexOfItem] = newValue, but will also trigger state updates in the reactivity system:</p>
+<p>// Vue.set<br>Vue.set(vm.items, indexOfItem, newValue)</p>
+<p>// Array.prototype.splice<br>vm.items.splice(indexOfItem, 1, newValue)</p>
+<p>You can also use the vm.$set instance method, which is an alias for the global Vue.set:</p>
+<p>vm.$set(vm.items, indexOfItem, newValue)</p>
+<p>To deal with caveat 2, you can use splice:</p>
+<p>vm.items.splice(newLength)</p>
+<p>8.2<br>Again due to limitations of modern JavaScript, Vue cannot detect property addition or deletion.Vue does not allow dynamically adding new root-level reactive properties to an already created instance. However, it’s possible to add reactive properties to a nested object using the Vue.set(object, key, value) method.You can also use the vm.$set instance method, which is an alias for the global Vue.set</p>
+<p>Sometimes you may want to assign a number of new properties to an existing object, for example using Object.assign() or _.extend(). In such cases, you should create a fresh object with properties from both objects. </p>
+<ol start="9">
+<li>v-for to-do-list</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"todo-list-example"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">form</span> <span class="attr">v-on:submit.prevent</span>=<span class="string">"addNewTodo"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"new-todo"</span>&gt;</span>Add a todo<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span></span></span><br><span class="line"><span class="tag">      <span class="attr">v-model</span>=<span class="string">"newTodoText"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">id</span>=<span class="string">"new-todo"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">placeholder</span>=<span class="string">"E.g. Feed the cat"</span></span></span><br><span class="line"><span class="tag">    &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span>&gt;</span>Add<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span></span></span><br><span class="line"><span class="tag">      <span class="attr">is</span>=<span class="string">"todo-item"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">v-for</span>=<span class="string">"(todo, index) in todos"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">v-bind:key</span>=<span class="string">"todo.id"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">v-bind:title</span>=<span class="string">"todo.title"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">v-on:remove</span>=<span class="string">"todos.splice(index, 1)"</span></span></span><br><span class="line"><span class="tag">    &gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'todo-item'</span>, &#123;</span><br><span class="line">  template: <span class="string">'\</span></span><br><span class="line"><span class="string">    &lt;li&gt;\</span></span><br><span class="line"><span class="string">      &#123;&#123; title &#125;&#125;\</span></span><br><span class="line"><span class="string">      &lt;button v-on:click="$emit(\'remove\')"&gt;Remove&lt;/button&gt;\</span></span><br><span class="line"><span class="string">    &lt;/li&gt;\</span></span><br><span class="line"><span class="string">  '</span>,</span><br><span class="line">  props: [<span class="string">'title'</span>]</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#todo-list-example'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    newTodoText: <span class="string">''</span>,</span><br><span class="line">    todos: [</span><br><span class="line">      &#123;</span><br><span class="line">        id: <span class="number">1</span>,</span><br><span class="line">        title: <span class="string">'Do the dishes'</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        id: <span class="number">2</span>,</span><br><span class="line">        title: <span class="string">'Take out the trash'</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        id: <span class="number">3</span>,</span><br><span class="line">        title: <span class="string">'Mow the lawn'</span></span><br><span class="line">      &#125;</span><br><span class="line">    ],</span><br><span class="line">    nextTodoId: <span class="number">4</span></span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    addNewTodo: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.todos.push(&#123;</span><br><span class="line">        id: <span class="keyword">this</span>.nextTodoId++,</span><br><span class="line">        title: <span class="keyword">this</span>.newTodoText</span><br><span class="line">      &#125;)</span><br><span class="line">      <span class="keyword">this</span>.newTodoText = <span class="string">''</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ol start="10">
+<li>event handler v-on</li>
+</ol>
+<p>Sometimes we also need to access the original DOM event in an inline statement handler. You can pass it into a method using the special $event variable:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click</span>=<span class="string">"warn('Form cannot be submitted yet.', $event)"</span>&gt;</span></span><br><span class="line">  Submit</span><br><span class="line"><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...</span></span><br><span class="line">methods: &#123;</span><br><span class="line">  warn: <span class="function"><span class="keyword">function</span> (<span class="params">message, event</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// now we have access to the native event</span></span><br><span class="line">    <span class="keyword">if</span> (event) event.preventDefault()</span><br><span class="line">    alert(message)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="11">
+<li>Event Modifiers<br>.stop<br>.prevent<br>.capture<br>.self<br>.once<br>.passive</li>
+</ol>
+<p>The .passive modifier is especially useful for improving performance on mobile devices.</p>
+<ol start="12">
+<li>Key Modifiers</li>
+</ol>
+<p>When listening for keyboard events, we often need to check for specific keys. Vue allows adding key modifiers for v-on when listening for key events:</p>
+<!-- only call `vm.submit()` when the `key` is `Enter` -->
+<input v-on:keyup.enter="submit">
+
+<p>You can directly use any valid key names exposed via KeyboardEvent.key as modifiers by converting them to kebab-case.</p>
+<input v-on:keyup.page-down="onPageDown">
+
+<p>In the above example, the handler will only be called if $event.key is equal to ‘PageDown’.</p>
+<p>System Modifier Keys</p>
+<p>You can use the following modifiers to trigger mouse or keyboard event listeners only when the corresponding modifier key is pressed:</p>
+<pre><code>.ctrl
+.alt
+.shift
+.meta
+</code></pre><!-- Ctrl + Click -->
+<div @click.ctrl="doSomething">Do something</div>
+
+
+<p>.exact Modifier</p>
+<p>The .exact modifier allows control of the exact combination of system modifiers needed to trigger an event.</p>
+<!-- this will fire even if Alt or Shift is also pressed -->
+<button @click.ctrl="onClick">A</button>
+
+<!-- this will only fire when Ctrl and no other keys are pressed -->
+<button @click.ctrl.exact="onCtrlClick">A</button>
+
+<!-- this will only fire when no system modifiers are pressed -->
+<button @click.exact="onClick">A</button>
+
+
+<p>Mouse Button Modifiers</p>
+<pre><code>.left
+.right
+.middle
+</code></pre><ol start="13">
+<li>v-model</li>
+</ol>
+<p>Modifiers<br>.lazy</p>
+<p>By default, v-model syncs the input with the data after each input event (with the exception of IME composition as stated above). You can add the lazy modifier to instead sync after change events:</p>
+<!-- synced after "change" instead of "input" -->
+<input v-model.lazy="msg">
+
+<p>.number</p>
+<p>If you want user input to be automatically typecast as a number, you can add the number modifier to your v-model managed inputs:</p>
+<input v-model.number="age" type="number">
+
+<p>This is often useful, because even with type=”number”, the value of HTML input elements always returns a string. If the value cannot be parsed with parseFloat(), then the original value is returned.<br>.trim</p>
+<p>If you want whitespace from user input to be trimmed automatically, you can add the trim modifier to your v-model-managed inputs:</p>
+<input v-model.trim="msg">
+
+<ol start="14">
+<li>component</li>
+</ol>
+<p>data Must Be a Function</p>
+<p>When we defined the <button-counter> component, you may have noticed that data wasn’t directly provided an object, like this:</button-counter></p>
+<p>data: {<br>  count: 0<br>}</p>
+<p>Instead, a component’s data option must be a function, so that each instance can maintain an independent copy of the returned data object:</p>
+<p>data: function () {<br>  return {<br>    count: 0<br>  }<br>}</p>
+<p>If Vue didn’t have this rule, clicking on one button would affect the data of all other instances, like below:</p>
+<p>Props</p>
+<p>Props are custom attributes you can register on a component. When a value is passed to a prop attribute, it becomes a property on that component instance. To pass a title to our blog post component, we can include it in the list of props this component accepts, using a props option:</p>
+<p>Vue.component(‘blog-post’, {<br>  props: [‘title’],<br>  template: ‘</p><h3>vue</h3>‘<br>})<p></p>
+<p>A component can have as many props as you’d like and by default, any value can be passed to any prop. In the template above, you’ll see that we can access this value on the component instance, just like with data.</p>
+<p>every component must have a single root element. </p>
+<p>&lt;blog-post<br>  v-for=”post in posts”<br>  v-bind:key=”post.id”<br>  v-bind:post=”post”</p>
+<blockquote>
+<p></p>
+</blockquote>
+<p>Vue.component(‘blog-post’, {<br>  props: [‘post’],<br>  template: <code>&lt;div class=&quot;blog-post&quot;&gt;
+      &lt;h3&gt;&lt;/h3&gt;
+      &lt;div v-html=&quot;post.content&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;</code><br>})</p>
+<p>Dynamic Components</p>
+<!-- Component changes when currentTabComponent changes -->
+<component v-bind:is="currentTabComponent"></component>
+
+<p>In the example above, currentTabComponent can contain either:</p>
+<pre><code>the name of a registered component, or
+a component’s options object
+</code></pre><p>DOM Template Parsing Caveats</p>
+<p>Some HTML elements, such as <ul>, <ol>, <table> and <select> have restrictions on what elements can appear inside them, and some elements such as <li>, <tr>, and <option> can only appear inside certain other elements.</option></tr></li></select></table></ol></ul></p>
+<p>This will lead to issues when using components with elements that have such restrictions. For example:</p>
+<table><br>  <blog-post-row></blog-post-row><br></table>
+
+<p>The custom component <blog-post-row> will be hoisted out as invalid content, causing errors in the eventual rendered output. Fortunately, the is special attribute offers a workaround:</blog-post-row></p>
+<p><table><br>  <tr is="blog-post-row"></tr><br></table><br>It should be noted that this limitation does not apply if you are using string templates from one of the following sources:</p>
+<pre><code>String templates (e.g. template: &apos;...&apos;)
+Single-file (.vue) components
+&lt;script type=&quot;text/x-template&quot;&gt;
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/06/29/vue/" data-id="cjsswct4e000nvwwl3cpuwcc1" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-javascript" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/19/javascript/" class="article-date">
+  <time datetime="2018-03-19T03:01:12.000Z" itemprop="datePublished">2018-03-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/19/javascript/">javascript</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1.javascript 1995 appeared, many browser use it. first it was used by form validation.<br>2.<br>Module import export<br>es5:<br>export:<br>var Modul_var = {};modul.exports = Modul_var;<br>import:<br>var Modul_var = require(“./XX.js”);<br>function doSomething() {<br>    …<br>    use Modul_var here<br>}</p>
+<p>es6:<br>export:<br>let Modul_var ={}; export default Modul_var;<br>Or let Modul_var1 ={};let Modul_var2 ={}; export {Modul_var1 as [alias1], Modul_var2 as [alias2]};<br>import:<br>import {Modul_var as [alias]} from “./XX.js”;<br>Or import {[alias1], [alias2]} from “./XX.js”; (the”.js”extention can be ignored, just the name)<br>function doSomething() {<br>    …<br>    use Modul_var here<br>}</p>
+<h2 id="Built-In-Types"><a href="#Built-In-Types" class="headerlink" title="Built-In Types"></a>Built-In Types</h2><p>In JavaScript, there are no true integers, all numbers are implemented in double-precision 64-bit binary format IEEE 754. When we use binary floating-point numbers, it will have some side effects.</p>
+<p>Here is an example of these side effects.<br>0.1 + 0.2 == 0.3 // false</p>
+<p>For the primitive data types, when we use literals to initialize a variable, the variable only has the literals as its value, it doesn’t have a type. It will be converted to the corresponding type only when necessary.</p>
+<p>1 + ‘1’ // ‘11’<br>2 * ‘2’ // 4 // ‘2’ will coerce to 2.<br>[1, 2] + [2, 1] // ‘1,22,1’</p>
+<p>Note the expression ‘a’ + + ‘b’ for addition:<br>‘a’ + + ‘b’ // -&gt; “aNaN” // + ‘b’ represent +b, if b not a number, will get NaN. Then ‘a’ + ‘NaN’ =&gt; ‘aNaN’.</p>
+<h2 id="New"><a href="#New" class="headerlink" title="New"></a>New</h2><ol>
+<li>Create a new object</li>
+<li>Chained to prototype</li>
+<li>Bind this</li>
+<li>Return a new object<br>It is recommended to create objects using the literal notation (whether it’s for performance or readability), since a look-up is needed for Object through the scope chain when creating an object using new Object(), but you don’t have this kind of problem when using literals.</li>
+</ol>
+<p>For new, we also need pay attention to the operator precedence:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line">Foo.getName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'1'</span>);</span><br><span class="line">&#125;;</span><br><span class="line">Foo.prototype.getName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'2'</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Foo.getName();   <span class="comment">// -&gt; 1</span></span><br><span class="line"><span class="keyword">new</span> Foo().getName(); <span class="comment">// -&gt; 2</span></span><br></pre></td></tr></table></figure></p>
+<p>As you can see from the above image, <strong>new Foo() has a higher priority than new Foo,</strong> so we can divide the execution order of the above code like this:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> (Foo.getName());</span><br><span class="line">(<span class="keyword">new</span> Foo()).getName();</span><br></pre></td></tr></table></figure></p>
+<p>For the first function, Foo.getName() is executed first, so the result is 1; As for the latter, it first executes new Foo() to create an instance, then finds the getName function on Foo via the prototype chain, so the result is 2.</p>
+<h2 id="Scope"><a href="#Scope" class="headerlink" title="Scope"></a>Scope</h2><p>Executing JS code would generate execution context, as long as code is not written in a function, it belongs to the global execution context. Code in a function will generate function execution context. </p>
+<p>The [[Scope]] attribute is generated in the first stage of generating execution context, which is a pointer, corresponds to the linked list of the scope, and JS will look up variables through this linked list up to the global context.</p>
+<h3 id="hoisting"><a href="#hoisting" class="headerlink" title="hoisting"></a>hoisting</h3><p>There would be two stages when the execution context is generated. The first stage is the stage of creation(to be specific, the step of generating variable objects), in which the JS interpreter would find out variables and functions that need to be hoisted, and allocate memory for them in advance, then functions would be stored into memory entirely, but variables would only be declared and assigned to undefined, therefore, we can use them in advance in the second stage (the code execution stage).</p>
+<p>In the process of hoisting, the same function would overwrite the last function, and <strong>functions have higher priority than variables hoisting.</strong></p>
+<p>Using var is more likely error-prone, thus ES6 introduces a new keyword let. let has an important feature that it can’t be used before declared, which conflicts the common saying that let doesn’t have the ability of hoisting. In fact, let hoists declaration, but is not assigned, because the temporal dead zone.</p>
+<p>#class</p>
+<ul>
+<li>You can think of an object as a single data structure that contains data as well as functions; the functions of an object are called its methods. </li>
+</ul>
+<p>The <strong>repr</strong>() method defines what represents the object when a user tries to print that object using print.</p>
+<p>– CSS<br>vertical-align only applies to inline and table-cell elements: you can’t use it to vertically align block-level elements.<br>CSS align can only work in the element effect range!<br>inline element can’t set height<br>margin: 0 auto Only works on block.<br>float: float elements don’t contribute to parent’s height, it’s width is decided by content.</p>
+<h1 id="BOM"><a href="#BOM" class="headerlink" title="BOM"></a>BOM</h1><p>The Browser Object Model (BOM) is a browser-specific convention referring to all the objects exposed by the web browser. Unlike the Document Object Model, there is no standard for implementation and no strict definition, so browser vendors are free to implement the BOM in any way they wish.</p>
+<p>That which we see as a window displaying a document, the browser program sees as a hierarchical collection of objects. When the browser parses a document, it creates a collection of objects that define the document and detail how it should be displayed. The object the browser creates is known as the Document object. It is part of a larger collection of objects that the browser makes use of. This collection of browser objects is collectively known as the Browser Object Model, or BOM.</p>
+<p>The top level of the hierarchy is the window object, which contains the information about the window displaying the document. Some of the window object are objects themselves that describe the document and related information. </p>
+<p>#IndexedDB</p>
+<p>To sum up:</p>
+<pre><code>IndexedDB is a transactional Object Store in which you will be able to store JavaScript objects.
+Indexes on some properties of these objects facilitate faster retrieval and search.
+Applications using IndexedDB can work both online and offline.
+IndexedDB is transactional: it manages concurrent access to data.
+</code></pre><h3 id="What-is-the-difference-between-map-every-and-forEach"><a href="#What-is-the-difference-between-map-every-and-forEach" class="headerlink" title="What is the difference between .map, .every, and .forEach?"></a>What is the difference between .map, .every, and .forEach?</h3><p>The difference is in the return values.</p>
+<p>.map() returns a new Array of objects created by taking some action on the original item.</p>
+<p>.every() returns a boolean - true if every element in this array satisfies the provided testing function. An important difference with .every() is that the test function may not always be called for every element in the array. Once the testing function returns false for any element, no more array elements are iterated. Therefore, the testing function should usually have no side effects.</p>
+<p>.forEach() returns nothing - It iterates the Array performing a given action for each item in the Array.</p>
+<p>.every() (stops looping the first time the iterator returns false or something falsey)<br>.some() (stops looping the first time the iterator returns true or something truthy)<br>.filter() (creates a new array including elements where the filter function returns true and omitting the ones where it returns false)<br>.map() (creates a new array from the values returned by the iterator function)<br>.reduce() (builds up a value by repeated calling the iterator, passing in previous values; see the spec for the details; useful for summing the contents of an array and many other things)<br>.reduceRight() (like reduce, but works in descending rather than ascending order)</p>
+<h1 id="VueJS"><a href="#VueJS" class="headerlink" title="VueJS"></a>VueJS</h1><h2 id="Component"><a href="#Component" class="headerlink" title="Component"></a>Component</h2><ol>
+<li><p>component name:<br>When using a component directly in the DOM (as opposed to in a string template or single-file component), we strongly recommend following the W3C rules for custom tag names (all-lowercase, must contain a hyphen). This helps you avoid conflicts with current and future HTML elements.</p>
+</li>
+<li><p>Global registration<br>These components are globally registered. That means they can be used in the template of any root Vue instance (new Vue) created after registration.<br>This even applies to all subcomponents, meaning all three of these components will also be available inside each other.</p>
+</li>
+<li><p>Local Registration<br>Global registration often isn’t ideal. For example, if you’re using a build system like Webpack, globally registering all components means that even if you stop using a component, it could still be included in your final build. This unnecessarily increases the amount of JavaScript your users have to download.<br>Note that locally registered components are not also available in subcomponents.For example, if you wanted ComponentA to be available in ComponentB,You have to:</p>
+</li>
+</ol>
+<ul>
+<li>using ES2015 modules</li>
+<li>Or define a components property in object ComponentB.</li>
+</ul>
+<ol start="4">
+<li>with webpack:<br>Remember that global registration must take place before the root Vue instance is created (with new Vue).</li>
+</ol>
+<h2 id="Vue-Instance"><a href="#Vue-Instance" class="headerlink" title="Vue Instance"></a>Vue Instance</h2><ol>
+<li>When a Vue instance is created, <strong>it adds all the properties found in its data object to Vue’s reactivity system</strong>. When the values of those properties change, the view will “react”, updating to match the new values.</li>
+<li>When this data changes, the view will re-render. It should be noted that properties in data are <strong>only reactive if they existed when the instance was created</strong> .</li>
+<li>The <strong>only exception to this being the use of Object.freeze()</strong>, which prevents existing properties from being changed, which also means the reactivity system can’t track changes.</li>
+<li>In addition to data properties, Vue instances expose a number of useful instance properties and methods. These are <strong>prefixed with $</strong> to differentiate them from user-defined properties.</li>
+</ol>
+<h2 id="Conditionnal-Rendering"><a href="#Conditionnal-Rendering" class="headerlink" title="Conditionnal Rendering"></a>Conditionnal Rendering</h2><ol>
+<li>so Vue offers a way for you to say, These two elements are completely separate don’t re-use them. <strong>Add a key</strong> attribute with unique values.</li>
+<li>The difference is that an element with v-show will always be rendered and remain in the DOM; v-show <strong>only toggles the display CSS property</strong> of the element.</li>
+</ol>
+<p>Note that v-show doesn’t support the <template> element, nor does it work with v-else.</template></p>
+<ol start="3">
+<li>v-if vs v-show</li>
+</ol>
+<p>v-if is “real” conditional rendering because it ensures that event listeners and child components inside the conditional block are properly destroyed and re-created during toggles.</p>
+<p>v-if is also lazy: if the condition is false on initial render, it will not do anything - the conditional block won’t be rendered until the condition becomes true for the first time.</p>
+<p>In comparison, v-show is much simpler - the element is always rendered regardless of initial condition, with CSS-based toggling.</p>
+<p>Generally speaking, v-if has higher toggle costs while v-show has higher initial render costs. So prefer v-show if you need to toggle something very often, and prefer v-if if the condition is unlikely to change at runtime.</p>
+<ol start="4">
+<li>Using v-if and v-for together is not recommended.When used together with v-if, v-for has a higher priority than v-if.</li>
+</ol>
+<h2 id="List-Rendering"><a href="#List-Rendering" class="headerlink" title="List Rendering"></a>List Rendering</h2><ol>
+<li>Due to limitations in JavaScript, Vue cannot detect the following changes to an array:<br>When you directly set an item with the index, e.g. vm.items[indexOfItem] = newValue<br>When you modify the length of the array, e.g. vm.items.length = newLength</li>
+</ol>
+<p><strong>To overcome caveat 1</strong>, both of the following will accomplish the same as vm.items[indexOfItem] = newValue, but will also trigger state updates in the reactivity system:</p>
+<p>// Vue.set<br>Vue.set(vm.items, indexOfItem, newValue)</p>
+<p>// Array.prototype.splice<br>vm.items.splice(indexOfItem, 1, newValue)</p>
+<p>You can also use the vm.$set instance method, which is an alias for the global Vue.set:</p>
+<p>vm.$set(vm.items, indexOfItem, newValue)</p>
+<p><strong>To deal with caveat 2</strong>, you can use splice:</p>
+<p>vm.items.splice(newLength)</p>
+<ol start="2">
+<li>Again due to limitations of modern JavaScript, Vue cannot detect property addition or deletion.<br>Vue does not allow dynamically adding new root-level reactive properties to an already created instance. However, it’s possible to add reactive properties to a nested object using the Vue.set(object, key, value) method. </li>
+</ol>
+<p>You could add a new age property to the nested userProfile object with:</p>
+<p>Vue.set(vm.userProfile, ‘age’, 27)</p>
+<p>You can also use the vm.$set instance method, which is an alias for the global Vue.set:</p>
+<p>vm.$set(vm.userProfile, ‘age’, 27)</p>
+<ol start="3">
+<li>Sometimes you may want to assign a number of new properties to an existing object, for example using Object.assign() or _.extend(). In such cases, you should create a fresh object with properties from both objects. </li>
+</ol>
+<p>You would add new, reactive properties with:</p>
+<p>vm.userProfile = Object.assign({}, vm.userProfile, {<br>  age: 27,<br>  favoriteColor: ‘Vue Green’<br>})</p>
+<h3 id="rest-parameters"><a href="#rest-parameters" class="headerlink" title="rest parameters"></a>rest parameters</h3><ol>
+<li><p>A function’s last parameter can be prefixed with … which will cause all remaining (user supplied) arguments to be placed within a “standard” javascript array. Only the last parameter can be a “rest parameter”.</p>
+</li>
+<li><p>Difference between rest parameters and the arguments object</p>
+<p> rest parameters are only the ones that haven’t been given a separate name (i.e. formally defined in function expression), while the arguments object contains all arguments passed to the function;<br> the arguments object is not a real array, while rest parameters are Array instances, meaning methods like sort, map, forEach or pop can be applied on it directly;<br> the arguments object has additional functionality specific to itself (like the callee property).</p>
+</li>
+</ol>
+<h3 id="spread-syntax"><a href="#spread-syntax" class="headerlink" title="spread syntax"></a>spread syntax</h3><p>Syntax</p>
+<p>For function calls:</p>
+<p>myFunction(…iterableObj);</p>
+<p>For array literals or strings:</p>
+<p>[…iterableObj, ‘4’, ‘five’, 6];</p>
+<p>For object literals (new in ECMAScript 2018):</p>
+<p>let objClone = { …obj };</p>
+<h3 id="shallow-copy"><a href="#shallow-copy" class="headerlink" title="shallow copy"></a>shallow copy</h3><p>Object.assign()</p>
+<ol>
+<li>Properties in the target object will be overwritten by properties in the sources if they have the same key.  Later sources’ properties will similarly overwrite earlier ones.  </li>
+</ol>
+<p>The Object.assign() method only copies enumerable and own properties from a source object to a target object. It uses [[Get]] on the source and [[Set]] on the target, so it will invoke getters and setters. Therefore it assigns properties versus just copying or defining new properties. This may make it unsuitable for merging new properties into a prototype if the merge sources contain getters. For copying property definitions, including their enumerability, into prototypes Object.getOwnPropertyDescriptor() and Object.defineProperty() should be used instead.</p>
+<p>Both String and Symbol properties are copied.</p>
+<p>In case of an error, for example if a property is non-writable, a TypeError will be raised, and the target object can be changed if any properties are added before error is raised.</p>
+<p>Note that Object.assign() does not throw on null or undefined source values.</p>
+<ol start="2">
+<li>Object.assign() copies property values. If the source value is a reference to an object, it only copies that reference value.</li>
+</ol>
+<h3 id="deep-copy"><a href="#deep-copy" class="headerlink" title="deep copy"></a>deep copy</h3><p>var obj2 = JSON.parse(JSON.stringify(obj1));</p>
+<h2 id="Recursive"><a href="#Recursive" class="headerlink" title="Recursive"></a>Recursive</h2><p>The (1) is the base of recursion, the trivial case.</p>
+<p>The (2) is the recursive step.</p>
+<h3 id="execution-context"><a href="#execution-context" class="headerlink" title="execution context"></a>execution context</h3><p>The information about a function run is stored in its execution context.</p>
+<p>The execution context is an internal data structure that contains details about the execution of a function: where the control flow is now, the current variables, the value of this (we don’t use it here) and few other internal details.</p>
+<p>One function call has exactly one execution context associated with it.</p>
+<h3 id="for-…-of"><a href="#for-…-of" class="headerlink" title="for … of"></a>for … of</h3><p>Note: for … of only works for Array-like Object, typical object can not directly use it, must use <strong>for (let item of Object.values(object))</strong></p>
+<h4 id="Seperation-of-Concerns"><a href="#Seperation-of-Concerns" class="headerlink" title="Seperation of Concerns"></a>Seperation of Concerns</h4><p>A key principle of software development and architecture is the notion of separation of Separation-of-Concerns-Feb-2013concerns.  At a low level, this principle is closely related to the Single Responsibility Principle of object oriented programming.  The general idea is that one should avoid co-locating different concerns within the design or code.  For instance, if your application includes business logic for identifying certain noteworthy items to display to the user, and your application formats such items in a certain way to make them more noticeable, it would violate separation of concerns if both the logic for determining which items were noteworthy and the formatting of these items were in the same place.  The design would be more maintainable, less tightly coupled, and less likely to violate the Don’t Repeat Yourself principle if the logic for determining which items needed formatted were located in a single location (with other business logic), and were exposed to the user interface code responsible for formatting simply as a property.</p>
+<p>At an architectural level, separation of concerns is a key component of building layered applications.  In a traditional N-tier application structure, layers might include data access, business logic, and user interface.  More modern N-tier application designs might include a core domain model and separate infrastructure modules in addition to one or more front end services and/or user interfaces.  Web pages, to a greater or lesser degree, separate concerns relating to structure, logic, and formatting through the use of HTML, JavaScript, and CSS.  At a lower level,the networking model used by the Internet is broken into a series of layers each with specific concerns and responsibilities, and demonstrates how separation of concerns can be effectively applied.</p>
+<p>In addition to separating logic across programming layers, one can also separate concerns along application feature sets.  Applications may be written to allow functionality to be added or removed in a modular fashion, and many commercial products support this functionality as a means of separating features across product SKUs or to allow third parties to create plug-ins.</p>
+<p>Separation of Concerns tends to be a natural consequence of following the Don’t Repeat Yourself principle, since of necessity abstractions must be built to encapsulate concepts that would otherwise be repeated throughout the application.  As long as these abstractions are logically grouped and organized, then Separation of Concerns should be achieved.</p>
+<h3 id="why-0-1-0-2-0-3"><a href="#why-0-1-0-2-0-3" class="headerlink" title="why 0.1 + 0.2 != 0.3"></a>why 0.1 + 0.2 != 0.3</h3><p>Floating Point Math</p>
+<p>Your language isn’t broken, it’s doing floating point math. Computers can only natively store integers, so they need some way of representing decimal numbers. This representation comes with some degree of inaccuracy. That’s why, more often than not, .1 + .2 != .3.<br>Why does this happen?</p>
+<p>It’s actually pretty simple. When you have a base 10 system (like ours), it can only express fractions that use a prime factor of the base. The prime factors of 10 are 2 and 5. So 1/2, 1/4, 1/5, 1/8, and 1/10 can all be expressed cleanly because the denominators all use prime factors of 10. In contrast, 1/3, 1/6, and 1/7 are all repeating decimals because their denominators use a prime factor of 3 or 7. In binary (or base 2), the only prime factor is 2. So you can only express fractions cleanly which only contain 2 as a prime factor. In binary, 1/2, 1/4, 1/8 would all be expressed cleanly as decimals. While, 1/5 or 1/10 would be repeating decimals. So 0.1 and 0.2 (1/10 and 1/5) while clean decimals in a base 10 system, are repeating decimals in the base 2 system the computer is operating in. When you do math on these repeating decimals, you end up with leftovers which carry over when you convert the computer’s base 2 (binary) number into a more human readable base 10 number.</p>
+<p>Below are some examples of sending .1 + .2 to standard output in a variety of languages.</p>
+<p>read more: | wikipedia | IEEE 754 | Stack Overflow | What Every Computer Scientist Should Know About Floating-Point Arithmetic</p>
+<h3 id="Time-based-animation"><a href="#Time-based-animation" class="headerlink" title="Time-based animation"></a>Time-based animation</h3><ol>
+<li><p>Your application runs on different devices, and where 60 frames/s are definitely not possible. More generally, you want your animated objects to move at the same speed on screen, regardless of the device that runs the game.</p>
+</li>
+<li><p>You want to perform some animations only a few times per second. For example, in sprite-based animation (drawing different images as a character moves, for example), you will not change the images of the animation 60 times/s, but only ten times per second. Mario will walk on the screen in a 60 fps animation, but his posture will not change every 1/60th of second.</p>
+</li>
+<li><p>You may also want to accurately set the framerate, leaving some CPU time for other tasks. Many games consoles limit the frame-rate to 1/30th of a second, in order to allow time for other sorts of computations (physics engine, artificial intelligence, etc.)</p>
+</li>
+</ol>
+<p><strong>High Resolution Time API</strong>:  “The only method exposed is now(), which returns a DOMHighResTimeStamp representing the current time in milliseconds. The timestamp is very accurate, with precision to a thousandth of a millisecond. </p>
+<p>Please note that while <strong>Date.now()</strong> returns the number of milliseconds elapsed since 1 January 1970 00:00:00 UTC,<strong>performance.now()</strong> returns the number of milliseconds, with microseconds in the fractional part, from performance.timing.navigationStart(), the start of navigation of the document, to the performance.now() call.</p>
+<p>Another important difference between Date.now() and performance.now() is that the latter is monotonically increasing, so the difference between two calls will never be negative.”</p>
+<h3 id="Promise"><a href="#Promise" class="headerlink" title="Promise:"></a>Promise:</h3><p>Important: Always return results, otherwise callbacks won’t catch the result of a previous promise (with arrow functions () =&gt; x is short for () =&gt; { return x; }).</p>
+<p>Promises solve a fundamental flaw with the callback pyramid of doom, by catching all errors, even thrown exceptions and programming errors. This is essential for functional composition of asynchronous operations.</p>
+<p>A Promise can be created from scratch using its constructor. This should be needed only to wrap old APIs.Mixing old-style callbacks and promises is problematic. If saySomething() fails or contains a programming error, nothing catches it. setTimeout is to blame for this.</p>
+<p>Nesting is a control structure to limit the scope of catch statements. Specifically, a nested catch only catches failures in its scope and below, not errors higher up in the chain outside the nested scope. When used correctly, this gives greater precision in error recovery:</p>
+<h3 id="script-async-defer"><a href="#script-async-defer" class="headerlink" title="script async defer"></a>script async defer</h3><p>For classic scripts, if the async attribute is present, then the classic script will be fetched in parallel to parsing and evaluated as soon as it is available (potentially before parsing completes). If the async attribute is not present but the defer attribute is present, then the classic script will be fetched in parallel and evaluated when the page has finished parsing. If neither attribute is present, then the script is fetched and evaluated immediately, blocking parsing until these are both complete.</p>
+<p>For module scripts, if the async attribute is present, then the module script and all its dependencies will be fetched in parallel to parsing, and the module script will be evaluated as soon as it is available (potentially before parsing completes). Otherwise, the module script and its dependencies will be fetched in parallel to parsing and evaluated when the page has finished parsing. (The defer attribute has no effect on module scripts.)</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/03/19/javascript/" data-id="cjsswct4p000pvwwlj71zbu5s" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-php" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/02/19/php/" class="article-date">
+  <time datetime="2018-02-19T03:01:12.000Z" itemprop="datePublished">2018-02-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/19/php/">php</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="prevent-SQL-injection"><a href="#prevent-SQL-injection" class="headerlink" title="prevent SQL injection"></a>prevent SQL injection</h3><ol>
+<li><p>convert param strings:<br>$db-&gt;real_escape_string();<br>$db-&gt;escape_string();<br>addslashes();</p>
+</li>
+<li><p>db prepare statement:<br>$stmt = $conn-&gt;prepare($sql);<br>$stmt-&gt;bind_param(“sss”, …args);<br>$stmt-&gt;execute();<br>$stmt-&gt;close();</p>
+</li>
+<li><p>or use PDO</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/02/19/php/" data-id="cjsswct43000fvwwlystu4gnw" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-css" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/19/css/" class="article-date">
+  <time datetime="2018-01-19T03:01:12.000Z" itemprop="datePublished">2018-01-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/19/css/">css</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>To-do list<br>Section</p>
+<p>In this example we will create a simple to-do list using pseudo-elements. This method can often be used to add small touches to the UI and improve user experience.<br>HTML<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>Buy milk<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>Take the dog for a walk<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>Exercise<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>Write code<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>Play music<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>Relax<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"></span><br><span class="line">CSS</span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">li &#123;</span></span><br><span class="line"><span class="undefined">  list-style-type: none;</span></span><br><span class="line"><span class="undefined">  position: relative;</span></span><br><span class="line"><span class="undefined">  margin: 2px;</span></span><br><span class="line"><span class="undefined">  padding: 0.5em 0.5em 0.5em 2em;</span></span><br><span class="line"><span class="undefined">  background: lightgrey;</span></span><br><span class="line"><span class="undefined">  font-family: sans-serif;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">li.done &#123;</span></span><br><span class="line"><span class="undefined">  background: #CCFF99;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">li.done::before &#123;</span></span><br><span class="line"><span class="undefined">  content: '';</span></span><br><span class="line"><span class="undefined">  position: absolute;</span></span><br><span class="line"><span class="undefined">  border-color: #009933;</span></span><br><span class="line"><span class="undefined">  border-style: solid;</span></span><br><span class="line"><span class="undefined">  border-width: 0 0.3em 0.25em 0;</span></span><br><span class="line"><span class="undefined">  height: 1em;</span></span><br><span class="line"><span class="undefined">  top: 1.3em;</span></span><br><span class="line"><span class="undefined">  left: 0.6em;</span></span><br><span class="line"><span class="undefined">  margin-top: -1em;</span></span><br><span class="line"><span class="undefined">  transform: rotate(45deg);</span></span><br><span class="line"><span class="undefined">  width: 0.5em;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line">JavaScript</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript"><span class="keyword">var</span> list = <span class="built_in">document</span>.querySelector(<span class="string">'ul'</span>);</span></span><br><span class="line"><span class="javascript">list.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">ev</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">if</span> (ev.target.tagName === <span class="string">'LI'</span>) &#123;</span></span><br><span class="line"><span class="javascript">     ev.target.classList.toggle(<span class="string">'done'</span>); </span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="javascript">&#125;, <span class="literal">false</span>);</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>Here is the above code example running live. Note that there are no icons used, and the check-mark is actually the ::before that has been styled in CSS. Go ahead and get some stuff done.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/01/19/css/" data-id="cjsswct3x0005vwwl7tdnbvts" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES2015/">ES2015</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-structures/">data structures</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/ES2015/" style="font-size: 20px;">ES2015</a> <a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/Vue/" style="font-size: 15px;">Vue</a> <a href="/tags/data-structures/" style="font-size: 10px;">data structures</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/03/eloquent-javascript-chapter-01/">eloquent_javascript_chapter_01</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/02/es2015-spread-syntax-and-rest-params/">es2015-spread-syntax-and-rest-params</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/02/js-data-structures/">js-data-structures</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/02/es2015-data-types/">es2015-data-types</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/26/data-structures-js/">data-structures-js</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 flowermypapa<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
