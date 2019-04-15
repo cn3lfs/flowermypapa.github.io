@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>vuex-state | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Vuexquestionswhat is vuex?Vuex is a state management pattern + library for Vue.js applications. It serves as a centralized store for all the components in an application, with rules ensuring that the">
+<meta name="keywords" content="Vue,Vuex">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vuex-state">
+<meta property="og:url" content="http://yoursite.com/2019/03/06/vuex-state/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Vuexquestionswhat is vuex?Vuex is a state management pattern + library for Vue.js applications. It serves as a centralized store for all the components in an application, with rules ensuring that the">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-18T00:16:54.209Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vuex-state">
+<meta name="twitter:description" content="Vuexquestionswhat is vuex?Vuex is a state management pattern + library for Vue.js applications. It serves as a centralized store for all the components in an application, with rules ensuring that the">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-vuex-state" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/06/vuex-state/" class="article-date">
+  <time datetime="2019-03-06T14:42:12.000Z" itemprop="datePublished">2019-03-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      vuex-state
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Vuex"><a href="#Vuex" class="headerlink" title="Vuex"></a>Vuex</h1><h2 id="questions"><a href="#questions" class="headerlink" title="questions"></a>questions</h2><h3 id="what-is-vuex"><a href="#what-is-vuex" class="headerlink" title="what is vuex?"></a>what is vuex?</h3><p>Vuex is a state management pattern + library for Vue.js applications. It serves as a centralized store for all the components in an application, with rules ensuring that the state can only be mutated in a predictable fashion.</p>
+<p>What is a “State Management Pattern”?</p>
+<p>Let’s start with a simple Vue counter app:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  <span class="comment">// state</span></span><br><span class="line">  data () &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      count: <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// view</span></span><br><span class="line">  template: <span class="string">`</span></span><br><span class="line"><span class="string">    &lt;div&gt;&#123;&#123; count &#125;&#125;&lt;/div&gt;</span></span><br><span class="line"><span class="string">  `</span>,</span><br><span class="line">  <span class="comment">// actions</span></span><br><span class="line">  methods: &#123;</span><br><span class="line">    increment () &#123;</span><br><span class="line">      <span class="keyword">this</span>.count++</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>It is a self-contained app with the following parts:</p>
+<p>The state, which is the source of truth that drives our app;<br>The view, which is just a declarative mapping of the state;<br>The actions, which are the possible ways the state could change in reaction to user inputs from the view.</p>
+<p>This is an extremely simple representation of the concept of “one-way data flow”:</p>
+<p>However, the simplicity quickly breaks down when we have multiple components that share common state:</p>
+<p>Multiple views may depend on the same piece of state.<br>Actions from different views may need to mutate the same piece of state</p>
+<h3 id="what-makes-vuex-store-different-from-plain-object"><a href="#what-makes-vuex-store-different-from-plain-object" class="headerlink" title="what makes vuex store different from plain object?"></a>what makes vuex store different from plain object?</h3><p>At the center of every Vuex application is the store. A “store” is basically a container that holds your application state. There are two things that make a Vuex store different from a plain global object:</p>
+<p>Vuex stores are reactive. When Vue components retrieve state from it, they will reactively and efficiently update if the store’s state changes.</p>
+<p>You cannot directly mutate the store’s state. The only way to change a store’s state is by explicitly committing mutations. This ensures every state change leaves a track-able record, and enables tooling that helps us better understand our applications.</p>
+<h3 id="why-don’t-we-change-the-state-directly"><a href="#why-don’t-we-change-the-state-directly" class="headerlink" title="why don’t we change the state directly?"></a>why don’t we change the state directly?</h3><p>the reason we are committing a mutation instead of changing store.state.count directly, is because we want to explicitly track it. This simple convention makes your intention more explicit, so that you can reason about state changes in your app better when reading the code. In addition, this gives us the opportunity to implement tools that can log every mutation, take state snapshots, or even perform time travel debugging.</p>
+<h2 id="State"><a href="#State" class="headerlink" title="State"></a>State</h2><h3 id="Single-State-Tree"><a href="#Single-State-Tree" class="headerlink" title="Single State Tree"></a>Single State Tree</h3><p>Vuex uses a single state tree - that is, this single object contains all your application level state and serves as the “single source of truth”. This also means usually you will have only one store for each application. A single state tree makes it straightforward to locate a specific piece of state, and allows us to easily take snapshots of the current app state for debugging purposes.</p>
+<h3 id="retrieve-state"><a href="#retrieve-state" class="headerlink" title="retrieve state"></a>retrieve state</h3><p>Since Vuex stores are reactive, the simplest way to “retrieve” state from it is simply returning some store state from within a computed property.Whenever store.state.count changes, it will cause the computed property to re-evaluate, and trigger associated DOM updates.</p>
+<p>However, this pattern causes the component to rely on the global store singleton. When using a module system, it requires importing the store in every component that uses store state, and also requires mocking when testing the component.</p>
+<p>Vuex provides a mechanism to “inject” the store into all child components from the root component with the store option (enabled by Vue.use(Vuex))</p>
+<h3 id="The-mapState-Helper"><a href="#The-mapState-Helper" class="headerlink" title="The mapState Helper"></a>The mapState Helper</h3><p>When a component needs to make use of multiple store state properties or getters, declaring all these computed properties can get repetitive and verbose. To deal with this we can make use of the mapState helper which generates computed getter functions for us, saving us some keystrokes:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// object syntax</span></span><br><span class="line">computed: mapState(&#123;</span><br><span class="line">    <span class="comment">// arrow functions can make the code very succinct!</span></span><br><span class="line">    count: <span class="function"><span class="params">state</span> =&gt;</span> state.count,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// passing the string value 'count' is same as `state =&gt; state.count`</span></span><br><span class="line">    countAlias: <span class="string">'count'</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// to access local state with `this`, a normal function must be used</span></span><br><span class="line">    countPlusLocalState (state) &#123;</span><br><span class="line">      <span class="keyword">return</span> state.count + <span class="keyword">this</span>.localCount</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line"><span class="comment">// array syntax</span></span><br><span class="line">computed: mapState([</span><br><span class="line">  <span class="comment">// map this.count to store.state.count</span></span><br><span class="line">  <span class="string">'count'</span></span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+<p>Note that mapState returns an object. How do we use it in combination with other local computed properties? Normally, we’d have to use a utility to merge multiple objects into one so that we can pass the final object to computed</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">computed: &#123;</span><br><span class="line">  localComputed () &#123; <span class="comment">/* ... */</span> &#125;,</span><br><span class="line">  <span class="comment">// mix this into the outer object with the object spread operator</span></span><br><span class="line">  ...mapState(&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Getters"><a href="#Getters" class="headerlink" title="Getters"></a>Getters</h2><h3 id="why-we-need-getters"><a href="#why-we-need-getters" class="headerlink" title="why we need getters?"></a>why we need getters?</h3><p>Sometimes we may need to compute derived state based on store state, for example filtering through a list of items and counting them. If more than one component needs to make use of this, we have to either duplicate the function, or extract it into a shared helper and import it in multiple places - both are less than ideal.</p>
+<p>Vuex allows us to define “getters” in the store. You can think of them as computed properties for stores. Like computed properties, a getter’s result is cached based on its dependencies, and will only re-evaluate when some of its dependencies have changed.</p>
+<h3 id="Property-Style-Access-and-Method-Style-Access"><a href="#Property-Style-Access-and-Method-Style-Access" class="headerlink" title="Property-Style Access and Method-Style Access"></a>Property-Style Access and Method-Style Access</h3><ol>
+<li><p>property-style accesss<br>The getters will be exposed on the store.getters object, and you access values as properties.<br>Note that getters accessed as properties are cached as part of Vue’s reactivity system.</p>
+</li>
+<li><p>method-style access<br>You can also pass arguments to getters by returning a function. This is particularly useful when you want to query an array in the store.</p>
+</li>
+</ol>
+<p>Note that getters accessed via methods will run each time you call them, and the result is not cached.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">getters: &#123;</span><br><span class="line">      <span class="comment">// Property-Style Access</span></span><br><span class="line">      doneTodos: <span class="function"><span class="params">state</span> =&gt;</span> &#123;</span><br><span class="line">          <span class="keyword">return</span> state.todos.filter(<span class="function"><span class="params">todo</span> =&gt;</span> todo.done)</span><br><span class="line">      &#125;,</span><br><span class="line">      doneTodosCount: <span class="function">(<span class="params">state, getters</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="keyword">return</span> getters.doneTodos.length</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="comment">//  Method-Style Access</span></span><br><span class="line">      getTodoById: <span class="function">(<span class="params">state</span>) =&gt;</span> (id) =&gt; &#123;</span><br><span class="line">          <span class="keyword">return</span> state.todos.find(<span class="function"><span class="params">todo</span> =&gt;</span> todo.id === id)</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(store.getters.doneTodos);</span><br><span class="line">  <span class="built_in">console</span>.log(store.getters.doneTodosCount);</span><br><span class="line">  <span class="built_in">console</span>.log(store.getters.getTodoById(<span class="number">2</span>));</span><br></pre></td></tr></table></figure></p>
+<h3 id="The-mapGetters-Helper"><a href="#The-mapGetters-Helper" class="headerlink" title="The mapGetters Helper"></a>The mapGetters Helper</h3><p>The mapGetters helper simply maps store getters to local computed properties:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">computed: &#123;</span><br><span class="line">    <span class="comment">// mix the getters into computed with object spread operator</span></span><br><span class="line">    ...mapGetters([</span><br><span class="line">      <span class="string">'doneTodosCount'</span>,</span><br><span class="line">      <span class="string">'anotherGetter'</span>,</span><br><span class="line">      <span class="comment">// ...</span></span><br><span class="line">    ])</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>If you want to map a getter to a different name, use an object:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">...mapGetters(&#123;</span><br><span class="line">  <span class="comment">// map `this.doneCount` to `this.$store.getters.doneTodosCount`</span></span><br><span class="line">  doneCount: <span class="string">'doneTodosCount'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="mutations"><a href="#mutations" class="headerlink" title="mutations"></a>mutations</h2><h3 id="Mutations-Follow-Vue’s-Reactivity-Rules"><a href="#Mutations-Follow-Vue’s-Reactivity-Rules" class="headerlink" title="Mutations Follow Vue’s Reactivity Rules"></a>Mutations Follow Vue’s Reactivity Rules</h3><p>Since a Vuex store’s state is made reactive by Vue, when we mutate the state, Vue components observing the state will update automatically. This also means Vuex mutations are subject to the same reactivity caveats when working with plain Vue:</p>
+<p>Prefer initializing your store’s initial state with all desired fields upfront.</p>
+<p>When adding new properties to an Object, you should either:</p>
+<p>Use Vue.set(obj, ‘newProp’, 123), or</p>
+<p>Replace that Object with a fresh one. For example, using the object spread syntax</p>
+<p>we can write it like this:</p>
+<p>state.obj = { …state.obj, newProp: 123 }</p>
+<h2 id="Actions"><a href="#Actions" class="headerlink" title="Actions"></a>Actions</h2><p>Actions are similar to mutations, the differences being that:</p>
+<p>Instead of mutating the state, actions commit mutations.<br>Actions can contain arbitrary asynchronous operations.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> Vuex.Store(&#123;</span><br><span class="line">  state: &#123;</span><br><span class="line">    count: <span class="number">0</span></span><br><span class="line">  &#125;,</span><br><span class="line">  mutations: &#123;</span><br><span class="line">    increment (state) &#123;</span><br><span class="line">      state.count++</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  actions: &#123;</span><br><span class="line">    increment (context) &#123;</span><br><span class="line">      context.commit(<span class="string">'increment'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>Action handlers receive a context object which exposes the same set of methods/properties on the store instance, so you can call context.commit to commit a mutation, or access the state and getters via context.state and context.getters. We can even call other actions with context.dispatch</p>
+<p>In practice, we often use ES2015 argument destructuring</p>
+<p>to simplify the code a bit (especially when we need to call commit multiple times):<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">actions: &#123;</span><br><span class="line">  increment (&#123; commit &#125;) &#123;</span><br><span class="line">    commit(<span class="string">'increment'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="payload"><a href="#payload" class="headerlink" title="payload"></a>payload</h3><p>Actions support the same payload format and object-style dispatch:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// dispatch with a payload</span></span><br><span class="line">store.dispatch(<span class="string">'incrementAsync'</span>, &#123;</span><br><span class="line">  amount: <span class="number">10</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// dispatch with an object</span></span><br><span class="line">store.dispatch(&#123;</span><br><span class="line">  type: <span class="string">'incrementAsync'</span>,</span><br><span class="line">  amount: <span class="number">10</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h3 id="mapActions-helper"><a href="#mapActions-helper" class="headerlink" title="mapActions helper"></a>mapActions helper</h3><p>You can dispatch actions in components with this.$store.dispatch(‘xxx’), or use the mapActions helper which maps component methods to store.dispatch calls (requires root store injection):</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; mapActions &#125; <span class="keyword">from</span> <span class="string">'vuex'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  methods: &#123;</span><br><span class="line">    ...mapActions([</span><br><span class="line">      <span class="string">'increment'</span>, <span class="comment">// map `this.increment()` to `this.$store.dispatch('increment')`</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">// `mapActions` also supports payloads:</span></span><br><span class="line">      <span class="string">'incrementBy'</span> <span class="comment">// map `this.incrementBy(amount)` to `this.$store.dispatch('incrementBy', amount)`</span></span><br><span class="line">    ]),</span><br><span class="line">    ...mapActions(&#123;</span><br><span class="line">      add: <span class="string">'increment'</span> <span class="comment">// map `this.add()` to `this.$store.dispatch('increment')`</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Modules"><a href="#Modules" class="headerlink" title="Modules"></a>Modules</h2><h3 id="Namespacing"><a href="#Namespacing" class="headerlink" title="Namespacing"></a>Namespacing</h3><p>By default, actions, mutations and getters inside modules are still registered under the global namespace - this allows multiple modules to react to the same mutation/action type.</p>
+<p>If you want your modules to be more self-contained or reusable, you can mark it as namespaced with namespaced: true. When the module is registered, all of its getters, actions and mutations will be automatically namespaced based on the path the module is registered at. For example:</p>
+<p>Namespaced getters and actions will receive localized getters, dispatch and commit. In other words, you can use the module assets without writing prefix in the same module. Toggling between namespaced or not does not affect the code inside the module.</p>
+<p>Accessing Global Assets in Namespaced Modules</p>
+<p>If you want to use global state and getters, rootState and rootGetters are passed as the 3rd and 4th arguments to getter functions, and also exposed as properties on the context object passed to action functions.</p>
+<p>To dispatch actions or commit mutations in the global namespace, pass { root: true } as the 3rd argument to dispatch and commit.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/06/vuex-state/" data-id="cjuicy9uj0019powl4cgch63t" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vuex/">Vuex</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/03/08/CORS/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          CORS
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/03/06/vue-router/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">vue-router</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Authentication/">Authentication</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CORS/">CORS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES2015/">ES2015</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Job/">Job</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-Router/">Vue Router</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vuex/">Vuex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XPath/">XPath</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XSLT/">XSLT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-structures/">data structures</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eloquent-javascript/">eloquent javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/miniprogram/">miniprogram</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/psychology/">psychology</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Authentication/" style="font-size: 10px;">Authentication</a> <a href="/tags/CORS/" style="font-size: 10px;">CORS</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/ES2015/" style="font-size: 12.5px;">ES2015</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/Job/" style="font-size: 10px;">Job</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Vue/" style="font-size: 17.5px;">Vue</a> <a href="/tags/Vue-Router/" style="font-size: 10px;">Vue Router</a> <a href="/tags/Vuex/" style="font-size: 10px;">Vuex</a> <a href="/tags/XPath/" style="font-size: 10px;">XPath</a> <a href="/tags/XSLT/" style="font-size: 10px;">XSLT</a> <a href="/tags/data-structures/" style="font-size: 10px;">data structures</a> <a href="/tags/eloquent-javascript/" style="font-size: 15px;">eloquent javascript</a> <a href="/tags/miniprogram/" style="font-size: 10px;">miniprogram</a> <a href="/tags/psychology/" style="font-size: 12.5px;">psychology</a> <a href="/tags/webpack/" style="font-size: 10px;">webpack</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/04/15/eloquent-javascript-04/">eloquent-javascript-04</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/11/eloquent-javascript-03/">eloquent_javascript_03</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/11/eloquent-javascript-02/">eloquent_javascript_02</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/31/XPath/">XPath</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/18/stateless-authentication/">stateless_authentication</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 flowermypapa<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

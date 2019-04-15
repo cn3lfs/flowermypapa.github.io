@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>eloquent_javascript_02 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Eloquent JavaScriptExpressions and statementsA fragment of code that produces a value is called an expression. Every value that is written literally (such as 22 or “psychoanalysis”) is an expression.">
+<meta name="keywords" content="eloquent javascript,JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="eloquent_javascript_02">
+<meta property="og:url" content="http://yoursite.com/2019/04/11/eloquent-javascript-02/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Eloquent JavaScriptExpressions and statementsA fragment of code that produces a value is called an expression. Every value that is written literally (such as 22 or “psychoanalysis”) is an expression.">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-11T15:06:34.049Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="eloquent_javascript_02">
+<meta name="twitter:description" content="Eloquent JavaScriptExpressions and statementsA fragment of code that produces a value is called an expression. Every value that is written literally (such as 22 or “psychoanalysis”) is an expression.">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-eloquent-javascript-02" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/11/eloquent-javascript-02/" class="article-date">
+  <time datetime="2019-04-11T13:08:22.000Z" itemprop="datePublished">2019-04-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      eloquent_javascript_02
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Eloquent-JavaScript"><a href="#Eloquent-JavaScript" class="headerlink" title="Eloquent JavaScript"></a>Eloquent JavaScript</h1><h2 id="Expressions-and-statements"><a href="#Expressions-and-statements" class="headerlink" title="Expressions and statements"></a>Expressions and statements</h2><p>A fragment of code that produces a value is called an expression. Every value that is written literally (such as 22 or “psychoanalysis”) is an expression. An expression between parentheses is also an expression, as is a binary operator applied to two expressions or a unary operator applied to one.Expressions can contain other expressions in a way similar to how subsentences in human languages are nested—a subsentence can contain its own subsentences, and so on. </p>
+<p>A statement stands on its own, so it amounts to something only if it affects the world. It could display something on the screen—that counts as changing the world—or it could change the internal state of the machine in a way that will affect the statements that come after it. These changes are called side effects. </p>
+<p>In some cases, JavaScript allows you to omit the semicolon at the end of a statement. In other cases, it has to be there, or the next line will be treated as part of the same statement. The rules for when it can be safely omitted are somewhat complex and error-prone.</p>
+<h2 id="Bindings—Define-a-variable"><a href="#Bindings—Define-a-variable" class="headerlink" title="Bindings—Define a variable"></a>Bindings—Define a variable</h2><p> To catch and hold values, JavaScript provides a thing called a binding, or variable:<br> let caught = 5 * 5;</p>
+<p>That’s a second kind of statement. The special word (keyword) let indicates that this sentence is going to define a binding. It is followed by the name of the binding and, if we want to immediately give it a value, by an = operator and an expression.</p>
+<p>The previous statement creates a binding called caught and uses it to grab hold of the number that is produced by multiplying 5 by 5.</p>
+<p>After a binding has been defined, its name can be used as an expression. The value of such an expression is the value the binding currently holds.</p>
+<h3 id="variable-reference"><a href="#variable-reference" class="headerlink" title="variable reference:"></a>variable reference:</h3><p>When a binding points at a value, that does not mean it is tied to that value forever. The = operator can be used at any time on existing bindings to disconnect them from their current value and have them point to a new one.You should imagine bindings as tentacles, rather than boxes. They do not contain values; they grasp them—two bindings can refer to the same value. A program can access only the values that it still has a reference to. When you need to remember something, you grow a tentacle to hold on to it or you reattach one of your existing tentacles to it.</p>
+<h3 id="undefined"><a href="#undefined" class="headerlink" title="undefined"></a>undefined</h3><p>定义时未赋值:<br>When you define a binding without giving it a value, the tentacle has nothing to grasp, so it ends in thin air. If you ask for the value of an empty binding, you’ll get the value undefined</p>
+<h3 id="let-const-var"><a href="#let-const-var" class="headerlink" title="let const var"></a>let const var</h3><p>A single let statement may define multiple bindings. The definitions must be separated by commas.<br>    let one = 1, two = 2;</p>
+<p>The words var and const can also be used to create bindings, in a way similar to let.</p>
+<pre><code>var name = &quot;Ayda&quot;;
+const greeting = &quot;Hello &quot;;
+</code></pre><p>The first, var (short for “variable”), is the way bindings were declared in pre-2015 JavaScript.</p>
+<p>The word const stands for constant. It defines a constant binding, which points at the same value for as long as it lives. This is useful for bindings that give a name to a value so that you can easily refer to it later.</p>
+<h2 id="Binding-names"><a href="#Binding-names" class="headerlink" title="Binding names"></a>Binding names</h2><p>不能以数字开头, 可以有$ _ 字母:<br>Binding names can be any word. Digits can be part of binding names—catch22 is a valid name, for example—but the name must not start with a digit. A binding name may include dollar signs ($) or underscores (_) but no other punctuation or special characters.</p>
+<p>Words with a special meaning, such as let, are keywords, and they may not be used as binding names. There are also a number of words that are “reserved for use” in future versions of JavaScript, which also can’t be used as binding names. The full list of keywords and reserved words is rather long.</p>
+<h2 id="The-environment"><a href="#The-environment" class="headerlink" title="The environment"></a>The environment</h2><p>The collection of bindings and their values that exist at a given time is called the environment. When a program starts up, this environment is not empty. It always contains bindings that are part of the language standard, and most of the time, it also has bindings that provide ways to interact with the surrounding system.</p>
+<p>比如一些DOM操作, 还是一些浏览器暴露的api</p>
+<h2 id="Functions"><a href="#Functions" class="headerlink" title="Functions"></a>Functions</h2><p>A lot of the values provided in the default environment have the type function. A function is a piece of program wrapped in a value. Such values can be applied in order to run the wrapped program.</p>
+<p>Executing a function is called invoking, calling, or applying it. You can call a function by putting parentheses after an expression that produces a function value. Usually you’ll directly use the name of the binding that holds the function. The values between the parentheses are given to the program inside the function. Values given to functions are called arguments. Different functions might need a different number or different types of arguments.</p>
+<h2 id="The-console-log-function"><a href="#The-console-log-function" class="headerlink" title="The console.log function"></a>The console.log function</h2><p>In the examples, I used console.log to output values. Most JavaScript systems (including all modern web browsers and Node.js) provide a console.log function that writes out its arguments to some text output device. </p>
+<h2 id="Return-values"><a href="#Return-values" class="headerlink" title="Return values"></a>Return values</h2><p>Showing a dialog box or writing text to the screen is a side effect. A lot of functions are useful because of the side effects they produce. Functions may also produce values, in which case they don’t need to have a side effect to be useful.<br>When a function produces a value, it is said to return that value. Anything that produces a value is an expression in JavaScript, which means function calls can be used within larger expressions.</p>
+<h2 id="Control-flow"><a href="#Control-flow" class="headerlink" title="Control flow"></a>Control flow</h2><p>执行顺序, 自上而下, 一般是在stack<br>When your program contains more than one statement, the statements are executed as if they are a story, from top to bottom. </p>
+<h2 id="Conditional-execution"><a href="#Conditional-execution" class="headerlink" title="Conditional execution"></a>Conditional execution</h2><p>if else:<br>Not all programs are straight roads. We may, for example, want to create a branching road, where the program takes the proper branch based on the situation at hand. This is called conditional execution.<br>Conditional execution is created with the if keyword in JavaScript. In the simple case, we want some code to be executed if, and only if, a certain condition holds. </p>
+<p>The statement after the if is wrapped in braces ({ and }) in this example. The braces can be used to group any number of statements into a single statement, called a block. You could also have omitted them in this case, since they hold only a single statement, but to avoid having to think about whether they are needed, most JavaScript programmers use them in every wrapped statement like this. </p>
+<p>You often won’t just have code that executes when a condition holds true, but also code that handles the other case. This alternate path is represented by the second arrow in the diagram. You can use the else keyword, together with if, to create two separate, alternative execution paths. If you have more than two paths to choose from, you can “chain” multiple if/else pairs together.</p>
+<h2 id="while-and-do-loops"><a href="#while-and-do-loops" class="headerlink" title="while and do loops"></a>while and do loops</h2><p>That works, but the idea of writing a program is to make something less work, not more. If we needed all even numbers less than 1,000, this approach would be unworkable. What we need is a way to run a piece of code multiple times. This form of control flow is called a loop.Looping control flow allows us to go back to some point in the program where we were before and repeat it with our current program state. </p>
+<p>只要条件为真, 就一直执行, 先判断, 再执行<br>while loop:<br>A statement starting with the keyword while creates a loop. The word while is followed by an expression in parentheses and then a statement, much like if. The loop keeps entering that statement as long as the expression produces a value that gives true when converted to Boolean.</p>
+<p>至少执行一次,先执行后判断<br>do while loop:<br>A do loop is a control structure similar to a while loop. It differs only on one point: a do loop always executes its body at least once, and it starts testing whether it should stop only after that first execution. To reflect this, the test appears after the body of the loop.</p>
+<h2 id="Indenting-Code"><a href="#Indenting-Code" class="headerlink" title="Indenting Code"></a>Indenting Code</h2><p>良好的缩进保持代码整洁:<br>In the examples, I’ve been adding spaces in front of statements that are part of some larger statement. These spaces are not required—the computer will accept the program just fine without them. In fact, even the line breaks in programs are optional. You could write a program as a single long line if you felt like it.</p>
+<p>The role of this indentation inside blocks is to make the structure of the code stand out. In code where new blocks are opened inside other blocks, it can become hard to see where one block ends and another begins. With proper indentation, the visual shape of a program corresponds to the shape of the blocks inside it. </p>
+<h2 id="for-loops"><a href="#for-loops" class="headerlink" title="for loops"></a>for loops</h2><p>Many loops follow the pattern shown in the while examples. First a “counter” binding is created to track the progress of the loop. Then comes a while loop, usually with a test expression that checks whether the counter has reached its end value. At the end of the loop body, the counter is updated to track progress.</p>
+<p>Because this pattern is so common, JavaScript and similar languages provide a slightly shorter and more comprehensive form, the for loop.<br>The parentheses after a for keyword must contain two semicolons. The part before the first semicolon initializes the loop, usually by defining a binding. The second part is the expression that checks whether the loop must continue. The final part updates the state of the loop after every iteration. In most cases, this is shorter and clearer than a while construct.</p>
+<h2 id="Breaking-Out-of-a-Loop"><a href="#Breaking-Out-of-a-Loop" class="headerlink" title="Breaking Out of a Loop"></a>Breaking Out of a Loop</h2><p>Having the looping condition produce false is not the only way a loop can finish. There is a special statement called break that has the effect of immediately jumping out of the enclosing loop.</p>
+<p>是否可以被某个数字整除<br>Using the remainder (%) operator is an easy way to test whether a number is divisible by another number. If it is, the remainder of their division is zero.</p>
+<p>无限循环<br>The for construct in the example does not have a part that checks for the end of the loop. This means that the loop will never stop unless the break statement inside is executed.f you were to remove that break statement or you accidentally write an end condition that always produces true, your program would get stuck in an infinite loop. A program stuck in an infinite loop will never finish running, which is usually a bad thing.</p>
+<p>直接结束这一轮, 跳到下一轮<br>The continue keyword is similar to break, in that it influences the progress of a loop. When continue is encountered in a loop body, control jumps out of the body and continues with the loop’s next iteration.</p>
+<h2 id="Updating-bindings-succinctly"><a href="#Updating-bindings-succinctly" class="headerlink" title="Updating bindings succinctly"></a>Updating bindings succinctly</h2><p>Especially when looping, a program often needs to “update” a binding to hold a value based on that binding’s previous value.</p>
+<p>counter = counter + 1;</p>
+<p>JavaScript provides a shortcut for this.</p>
+<p>counter += 1;</p>
+<p>Similar shortcuts work for many other operators, such as result *= 2 to double result or counter -= 1 to count downward.<br>For counter += 1 and counter -= 1, there are even shorter equivalents: counter++ and counter–</p>
+<h2 id="Dispatching-on-a-value-with-switch"><a href="#Dispatching-on-a-value-with-switch" class="headerlink" title="Dispatching on a value with switch"></a>Dispatching on a value with switch</h2><p>There is a construct called switch that is intended to express such a “dispatch” in a more direct way. Unfortunately, the syntax JavaScript uses for this (which it inherited from the C/Java line of programming languages) is somewhat awkward—a chain of if statements may look better.</p>
+<p>忘记break会使程序继续执行下去, 触发多个选项<br>You may put any number of case labels inside the block opened by switch. The program will start executing at the label that corresponds to the value that switch was given, or at default if no matching value is found. It will continue executing, even across other labels, until it reaches a break statement. But be careful—it is easy to forget such a break, which will cause the program to execute code you do not want executed.</p>
+<h2 id="Capitalization"><a href="#Capitalization" class="headerlink" title="Capitalization"></a>Capitalization</h2><p>Binding names may not contain spaces, yet it is often helpful to use multiple words to clearly describe what the binding represents.<br>The first style can be hard to read. I rather like the look of the underscores, though that style is a little painful to type. The standard JavaScript functions, and most JavaScript programmers, follow the bottom style—they capitalize every word except the first. It is not hard to get used to little things like that, and code with mixed naming styles can be jarring to read, so we follow this convention</p>
+<h2 id="Comments"><a href="#Comments" class="headerlink" title="Comments"></a>Comments</h2><p>多注释<br>Often, raw code does not convey all the information you want a program to convey to human readers, or it conveys it in such a cryptic way that people might not understand it. At other times, you might just want to include some related thoughts as part of your program. This is what comments are for.</p>
+<p>A comment is a piece of text that is part of a program but is completely ignored by the computer. JavaScript has two ways of writing comments. To write a single-line comment, you can use two slash characters (//) and then the comment text after it.</p>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><ol>
+<li>介绍了变量 let const var</li>
+<li>flow control: if, for loop, while loop, switch case</li>
+<li>function</li>
+</ol>
+<p>后面是三个小游戏:</p>
+<p>附上第三个的代码:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> row = <span class="string">""</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i=<span class="number">0</span>; i&lt;<span class="number">8</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j=<span class="number">0</span>; j&lt;<span class="number">8</span>; j++) &#123;</span><br><span class="line">        <span class="keyword">if</span> ( (i + j) % <span class="number">2</span> === <span class="number">0</span>) &#123;</span><br><span class="line">            row += <span class="string">" "</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            row += <span class="string">"#"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    row += <span class="string">"\n"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(row);</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/11/eloquent-javascript-02/" data-id="cjuicy9um001bpowlg3btzxdu" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/eloquent-javascript/">eloquent javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/04/11/eloquent-javascript-03/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          eloquent_javascript_03
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/03/31/XPath/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">XPath</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Authentication/">Authentication</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CORS/">CORS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES2015/">ES2015</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Job/">Job</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-Router/">Vue Router</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vuex/">Vuex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XPath/">XPath</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XSLT/">XSLT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-structures/">data structures</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eloquent-javascript/">eloquent javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/miniprogram/">miniprogram</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/psychology/">psychology</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Authentication/" style="font-size: 10px;">Authentication</a> <a href="/tags/CORS/" style="font-size: 10px;">CORS</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/ES2015/" style="font-size: 12.5px;">ES2015</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/Job/" style="font-size: 10px;">Job</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Vue/" style="font-size: 17.5px;">Vue</a> <a href="/tags/Vue-Router/" style="font-size: 10px;">Vue Router</a> <a href="/tags/Vuex/" style="font-size: 10px;">Vuex</a> <a href="/tags/XPath/" style="font-size: 10px;">XPath</a> <a href="/tags/XSLT/" style="font-size: 10px;">XSLT</a> <a href="/tags/data-structures/" style="font-size: 10px;">data structures</a> <a href="/tags/eloquent-javascript/" style="font-size: 15px;">eloquent javascript</a> <a href="/tags/miniprogram/" style="font-size: 10px;">miniprogram</a> <a href="/tags/psychology/" style="font-size: 12.5px;">psychology</a> <a href="/tags/webpack/" style="font-size: 10px;">webpack</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/04/15/eloquent-javascript-04/">eloquent-javascript-04</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/11/eloquent-javascript-03/">eloquent_javascript_03</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/11/eloquent-javascript-02/">eloquent_javascript_02</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/31/XPath/">XPath</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/18/stateless-authentication/">stateless_authentication</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 flowermypapa<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
